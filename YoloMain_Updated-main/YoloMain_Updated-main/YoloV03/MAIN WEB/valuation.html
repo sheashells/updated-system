@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Valuation | SIERRA HAVEN</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="landing.css" />
+  <link rel="stylesheet" href="design-system.css" />
+  <link rel="stylesheet" href="button-interactions.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --midnight: #26385F;
+      --deep-navy: #304573;
+      --electric-blue: #3569C8;
+      --sky-glow: #8DB0E8;
+      --royal-blue: #4778D8;
+      --crimson: #CC3B56;
+      --crimson-glow: #FFA0B1;
+      --dark-crimson: #B82F49;
+      --cloud: #EEF3FF;
+      --pure-white: #F5F8FF;
+      --text-dark: #102448;
+      --surface-primary: #2C416D;
+      --surface-secondary: #354C7A;
+      --surface-card: #3E588B;
+      --surface-hover: #4D689C;
+      --wine: #93314C;
+      --valuation-gradient-end: #0F1738;
+      --valuation-blue: #2563EB;
+      --valuation-royal-blue: #1D4ED8;
+      --valuation-red: #DC2626;
+      --valuation-soft-red: #EF4444;
+      --valuation-blue-rgb: 37 99 235;
+      --valuation-red-rgb: 220 38 38;
+      --midnight-rgb: 38 56 95;
+      --electric-blue-rgb: 53 105 200;
+      --sky-glow-rgb: 141 176 232;
+      --crimson-rgb: 204 59 86;
+      --cloud-rgb: 238 243 255;
+      --blue-glow: 0 0 10px rgba(141,176,232,.25), 0 0 25px rgba(53,105,200,.20);
+      --red-glow: 0 0 10px rgba(204,59,86,.20), 0 0 25px rgba(204,59,86,.15);
+      --card-shadow: 0 8px 30px rgba(0,0,0,.22);
+      --green: var(--electric-blue);
+      --green-dark: var(--dark-crimson);
+      --green-soft: var(--surface-secondary);
+      --navy: var(--cloud);
+      --navy-soft: var(--sky-glow);
+      --gold: var(--crimson);
+      --text: var(--cloud);
+      --muted: rgb(244 246 255 / 68%);
+      --card: var(--surface-card);
+      --line: rgb(61 123 217 / 25%);
+      --shadow: var(--card-shadow);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, Geist, Arial, Helvetica, sans-serif;
+      background: var(--midnight);
+      color: var(--text);
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .nav-login,
+    .nav-signup,
+    .nav-home {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      padding: 0.8rem 1.2rem;
+      font-weight: 800;
+      transition: transform 160ms ease, background 160ms ease, color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .nav-login {
+      border: 1px solid rgb(255 255 255 / 48%);
+      color: #fff;
+    }
+
+    .nav-signup {
+      background: var(--green);
+      color: #fff;
+    }
+
+    .nav-home {
+      border: 1px solid rgb(255 255 255 / 48%);
+      color: #fff;
+    }
+
+    .nav-login:hover,
+    .nav-home:hover {
+      color: #34d399;
+      background: rgb(255 255 255 / 12%);
+      transform: translateY(-1px);
+    }
+
+    .nav-signup:hover {
+      background: var(--green-dark);
+      transform: translateY(-1px);
+    }
+
+    .nav-login:active,
+    .nav-signup:active,
+    .nav-home:active { transform: translateY(1px); }
+
+    .nav-login:focus-visible,
+    .nav-signup:focus-visible,
+    .nav-home:focus-visible {     outline: 3px solid #3b82f6; outline-offset: 3px; }
+
+    .hero-copy .nav-signup { margin-top: 20px; }
+    .nav-actions [hidden], .hero-copy [hidden] { display: none; }
+
+    .page-title {
+      margin: 0 0 24px;
+      color: var(--navy);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      letter-spacing: -0.045em;
+      line-height: 1.05;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #1e40af, #10b981);
+      border-radius: 12px;
+      color: #fff;
+      padding: 28px 28px 18px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+    }
+
+    .hero-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .hero-copy {
+      max-width: 630px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .hero h1,
+    .hero h2 {
+      margin: 16px 0 12px;
+      font-size: clamp(2.4rem, 3vw, 3.6rem);
+      line-height: 1.02;
+      letter-spacing: -0.06em;
+      font-weight: 800;
+    }
+
+    .hero p {
+      margin: 0;
+      color: rgba(255,255,255,0.8);
+      font-size: 1.02rem;
+      line-height: 1.7;
+    }
+
+    .hero-panel {
+      width: min(100%, 320px);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px;
+      padding: 18px;
+      backdrop-filter: blur(4px);
+    }
+
+    .mini-stat {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 16px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      margin-bottom: 10px;
+    }
+
+    .mini-stat:last-child { margin-bottom: 0; }
+
+    .mini-stat small {
+      display: block;
+      color: rgba(255,255,255,0.72);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
+
+    .mini-stat strong {
+      font-size: 1.08rem;
+      letter-spacing: -0.04em;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 28px;
+    }
+
+    .main-grid > .card { min-width: 0; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    .form-card {
+      padding: 28px;
+    }
+
+    .form-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .section-kicker {
+      color: var(--muted);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 800;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .form-header h2 {
+      margin: 0;
+      font-size: clamp(1.8rem, 2vw, 2.4rem);
+      letter-spacing: -0.05em;
+      color: var(--navy);
+      font-weight: 800;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border: 1px solid #a7f3d0;
+    }
+
+    .tag-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 4px rgba(16,185,129,0.12);
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: var(--navy);
+      font-size: 0.8rem;
+      letter-spacing: 0.02em;
+      font-weight: 700;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 1.5px solid rgba(15, 23, 42, 0.1);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .location-fields {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .location-fields .field:first-child,
+    .location-error,
+    .location-hint { grid-column: 1 / -1; }
+
+    .location-hint {
+      margin: -8px 0 0;
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .location-error {
+      margin: -6px 0 0;
+      color: #a43e32;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .location-error[hidden] { display: none; }
+
+    input[aria-invalid="true"],
+    select[aria-invalid="true"] {
+      border-color: #a43e32;
+      box-shadow: 0 0 0 3px rgba(164,62,50,0.1);
+    }
+
+    input:focus, select:focus {
+      border-color: var(--navy-soft);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.14);
+      background: #fff;
+    }
+
+    .submit-btn {
+      grid-column: 1 / -1;
+      border: none;
+      border-radius: 6px;
+      background: var(--green);
+      color: #fff;
+      padding: 1rem 1.2rem;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(16,185,129,0.18);
+      transition: transform 0.18s ease, background 0.18s ease;
+    }
+
+    .submit-btn:hover { background: var(--green-dark); transform: translateY(-1px); }
+    .submit-btn:focus-visible { outline: 3px solid rgba(37,99,235,0.35); outline-offset: 3px; }
+
+    .result-card {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .result-header h3 {
+      margin: 0;
+      color: var(--navy);
+      font-weight: 800;
+      font-size: 1.08rem;
+      letter-spacing: -0.04em;
+    }
+
+    .result-price {
+      font-size: clamp(2.1rem, 3vw, 3rem);
+      line-height: 1.06;
+      letter-spacing: -0.07em;
+      color: var(--navy);
+      font-weight: 800;
+    }
+
+    .result-price span {
+      font-size: 0.62em;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .meta-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .metric-box {
+      background: #eff4ff;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+
+    .metric-box span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .metric-box strong {
+      color: var(--navy);
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .chart-wrap {
+      position: relative;
+      width: 100%;
+      min-width: 0;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .chart-wrap canvas { max-width: 100%; }
+
+    .insight-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-radius: 8px;
+      padding: 16px 18px;
+    }
+
+    .insight-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 6px;
+      display: grid;
+      place-items: center;
+      background: #d1fae5;
+      font-size: 1.2rem;
+    }
+
+    .insight-box p {
+      margin: 0;
+      line-height: 1.7;
+      color: var(--text);
+      font-size: 0.94rem;
+    }
+
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.8);
+      text-align: center;
+      padding: 24px 20px 26px;
+      margin-top: 24px;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 980px) {
+      .nav-actions { gap: 8px; }
+      .nav-login, .nav-signup, .nav-home { padding: 0.7rem 0.9rem; }
+      .hero-inner {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
+        gap: 20px;
+      }
+      .main-grid { grid-template-columns: 1fr; display: grid; }
+    }
+
+    @media (max-width: 640px) {
+      form { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .meta-row { grid-template-columns: 1fr; }
+      .form-header { align-items: flex-start; flex-direction: column; }
+      .location-fields { grid-template-columns: 1fr; }
+      .location-fields .field:first-child,
+      .location-error,
+      .location-hint { grid-column: auto; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero { padding: 22px 20px; }
+    }
+
+    @media (max-width: 420px) {
+      .nav-login, .nav-signup, .nav-home { padding: 0.65rem 0.8rem; }
+    }
+
+    body {
+      color: var(--cloud);
+      background: transparent;
+    }
+    .hero {
+      background:
+        linear-gradient(135deg, rgb(var(--midnight-rgb) / 48%), rgb(var(--midnight-rgb) / 62%)),
+        radial-gradient(75% 55% at 28% 30%, var(--valuation-blue), var(--valuation-royal-blue) 38%, transparent 78%),
+        radial-gradient(60% 42% at 85% 92%, var(--valuation-red), var(--valuation-soft-red) 42%, transparent 78%),
+        linear-gradient(135deg, var(--valuation-blue), var(--valuation-royal-blue) 45%, var(--valuation-red) 75%, var(--valuation-soft-red));
+      background-size: auto, auto, auto, 220% 220%;
+      background-position: center, center, center, 0% 50%;
+      animation: valuation-gradient-drift 30s ease-in-out infinite alternate;
+      box-shadow: var(--blue-glow), var(--red-glow);
+    }
+    @keyframes valuation-gradient-drift {
+      from { background-position: center, center, center, 0% 50%; }
+      to { background-position: center, center, center, 100% 50%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero { animation: none; }
+    }
+    .card,
+    .hero-panel,
+    .metric-box,
+    .chart-wrap,
+    .insight-box {
+      color: var(--cloud);
+      background:
+        linear-gradient(145deg, rgb(255 255 255 / 10%), rgb(255 255 255 / 5%)),
+        rgb(var(--electric-blue-rgb) / 20%);
+      border: 1px solid rgb(255 255 255 / 22%);
+      box-shadow: 0 16px 38px rgb(2 8 23 / 28%), inset 0 1px 0 rgb(255 255 255 / 8%);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .form-header h2,
+    .result-header h3,
+    .result-price,
+    .metric-box strong,
+    label,
+    .insight-box p { color: var(--cloud); }
+    .result-price { color: var(--cloud); text-shadow: none; }
+    .tag {
+      color: var(--cloud);
+      background: var(--surface-secondary);
+      border-color: rgb(var(--sky-glow-rgb) / 50%);
+    }
+    .tag-dot {
+      background: var(--sky-glow);
+      box-shadow: 0 0 0 4px rgb(var(--sky-glow-rgb) / 18%);
+    }
+    .card { box-shadow: inset 4px 0 var(--electric-blue), 0 16px 38px rgb(2 8 23 / 28%), inset 0 1px 0 rgb(255 255 255 / 8%); }
+    input,
+    select,
+    textarea {
+      color: var(--pure-white);
+      background: var(--surface-secondary);
+      border-color: rgb(var(--sky-glow-rgb) / 25%);
+    }
+    input:focus,
+    select:focus,
+    textarea:focus { border-color: var(--electric-blue); box-shadow: var(--blue-glow); }
+    .submit-btn,
+    .nav-signup {
+      color: var(--pure-white);
+      background: var(--crimson);
+      box-shadow: var(--red-glow);
+    }
+    .submit-btn:hover,
+    .nav-signup:hover { background: var(--dark-crimson); box-shadow: var(--red-glow); }
+    .nav-login,
+    .nav-home {
+      color: var(--electric-blue);
+      border-color: var(--electric-blue);
+    }
+    .nav-login:hover,
+    .nav-home:hover { color: var(--sky-glow); background: rgb(31 79 216 / 10%); }
+    :focus-visible { outline-color: var(--sky-glow); }
+  </style>
+</head>
+<body class="page-fullscreen lp-wrapper">
+  <div class="bg-gradient-mesh page-mesh-background" aria-hidden="true"></div>
+  <header class="lp-header" id="lp-header">
+    <div class="lp-container lp-nav-container">
+      <a href="index.html" class="lp-logo navbar-logo">
+        <img class="lp-logo-icon" src="assets/sierra-haven-mark.png" alt="" aria-hidden="true">
+        <span>SIERRA HAVEN</span>
+      </a>
+      <nav class="lp-nav-menu" id="lp-nav-menu" aria-label="Main navigation">
+        <ul class="lp-nav-list">
+          <li><a class="lp-nav-link" href="index.html">Home</a></li>
+          <li><a class="lp-nav-link" href="dashboard.html">Property Portal</a></li>
+        </ul>
+        <div class="lp-auth-group nav-actions">
+          <a href="../LOGIN%20PANEL/Index.html?mode=login" class="nav-login" id="valuationLoginLink">Log In</a>
+          <a href="../LOGIN%20PANEL/Index.html?mode=signup" class="nav-signup" id="valuationSignupLink">Sign Up</a>
+          <a href="tenant-dashboard.html#overview" class="nav-home" id="valuationDashboardLink" hidden>My Dashboard</a>
+          <a href="../LOGIN%20PANEL/Index.html?mode=login&amp;signedOut=1" class="nav-login" id="valuationSignOutLink" hidden>Sign Out</a>
+        </div>
+      </nav>
+      <button class="lp-mobile-toggle" id="lp-mobile-toggle" type="button"
+              aria-label="Toggle menu" aria-controls="lp-nav-menu" aria-expanded="false">
+        <span class="lp-hamburger"></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="page-shell-content">
+    <h1 class="page-title">AI Valuation</h1>
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <span class="eyebrow">AI-powered valuation</span>
+          <h2>Value your property with confidence.</h2>
+          <p>Estimate the market value of homes, condos, and lots using local pricing trends, comparable sales, and property-level data.</p>
+          <a class="nav-signup" href="../LOGIN%20PANEL/Index.html?mode=signup" id="valuationPortalLink">Open the Property Portal</a>
+          <a class="nav-signup" href="tenant-dashboard.html#overview" id="valuationAccountPortalLink" hidden>Open My Dashboard</a>
+        </div>
+
+        <div class="hero-panel">
+          <div class="mini-stat">
+            <div>
+              <small>Average price</small>
+              <strong>₱8.4M</strong>
+            </div>
+            <div>+8.2%</div>
+          </div>
+          <div class="mini-stat">
+            <div>
+              <small>Median days</small>
+              <strong>17 days</strong>
+            </div>
+            <div>Fast</div>
+          </div>
+          <div class="mini-stat">
+            <div>
+              <small>Buyer demand</small>
+              <strong>High</strong>
+            </div>
+            <div>Strong</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-grid">
+      <section class="card form-card">
+        <div class="form-header">
+          <div>
+            <span class="section-kicker">Property valuation</span>
+            <h2>Estimate your value</h2>
+          </div>
+          <div class="tag"><span class="tag-dot"></span> Location-adjusted estimate</div>
+        </div>
+
+        <form id="valuationForm" novalidate>
+          <div class="location-fields field full">
+            <div class="field">
+              <label for="province">Property Location — Province</label>
+              <select id="province" name="province" required>
+                <option value="">Select Province</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="city">City / Municipality</label>
+              <input id="city" name="city" type="text" list="cityOptions" placeholder="Select a province first" autocomplete="off" disabled required>
+              <datalist id="cityOptions"></datalist>
+            </div>
+            <div class="field full">
+              <label for="barangay">Barangay <span>(optional)</span></label>
+              <input id="barangay" name="barangay" type="text" placeholder="Enter barangay, if known" autocomplete="address-level3" disabled>
+            </div>
+            <p class="location-hint">Choose a province, then type or select a city or municipality from its suggestions. Price, access and trend adjustments are indicative demo factors, not live comparable-sale data.</p>
+            <p class="location-error" id="locationError" role="alert" hidden>Please select a valid location before generating an AI valuation.</p>
+          </div>
+
+          <div class="field">
+            <label for="propertyType">Property Type</label>
+            <select id="propertyType">
+              <option>House</option>
+              <option>Condo</option>
+              <option>Apartment</option>
+              <option>Lot</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="bedrooms">Bedrooms</label>
+            <input id="bedrooms" type="number" min="1" max="10" value="3" />
+          </div>
+
+          <div class="field">
+            <label for="floorArea">Floor Area (sqm)</label>
+            <input id="floorArea" type="number" placeholder="e.g., 120" value="120" />
+          </div>
+
+          <div class="field">
+            <label for="lotArea">Lot Area (sqm)</label>
+            <input id="lotArea" type="number" placeholder="e.g., 200" value="200" />
+          </div>
+
+          <div class="field">
+            <label for="condition">Condition</label>
+            <select id="condition">
+              <option>Move-in Ready</option>
+              <option>Well Maintained</option>
+              <option>Needs Renovation</option>
+              <option>Premium Finish</option>
+            </select>
+          </div>
+
+          <button type="submit" class="submit-btn">Calculate Value</button>
+        </form>
+      </section>
+
+      <section class="card result-card">
+        <div class="result-header">
+          <h3>Valuation Results</h3>
+          <div class="tag"><span class="tag-dot"></span> <span id="confidenceLabel">High confidence</span></div>
+        </div>
+
+        <div class="result-price">Select a location to view your estimate</div>
+
+        <div class="meta-row">
+          <div class="metric-box">
+            <span>Confidence Level</span>
+            <strong id="confidenceValue">High</strong>
+          </div>
+          <div class="metric-box">
+            <span>Market Growth</span>
+            <strong id="marketTrend">—</strong>
+          </div>
+        </div>
+
+        <div class="chart-wrap">
+          <canvas id="valuationChart"></canvas>
+        </div>
+
+        <div class="insight-box">
+          <div class="insight-icon">🏠</div>
+          <p>Select a province and city to see a location-adjusted estimate.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>Powered by the SIERRA HAVEN AI Valuation Engine</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-client.js"></script>
+  <script src="valuation.js"></script>
+  <script>
+    (() => {
+      const menuToggle = document.getElementById('lp-mobile-toggle');
+      const menu = document.getElementById('lp-nav-menu');
+      if (menuToggle && menu) {
+        const closeMenu = () => {
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menu.classList.remove('is-open');
+        };
+
+        menuToggle.addEventListener('click', () => {
+          const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+          menuToggle.setAttribute('aria-expanded', String(!isOpen));
+          menu.classList.toggle('is-open', !isOpen);
+        });
+        menu.addEventListener('click', event => {
+          if (event.target.closest('a')) closeMenu();
+        });
+        document.addEventListener('keydown', event => {
+          if (event.key === 'Escape') closeMenu();
+        });
+      }
+
+      const authStorageKey = 'sierra-haven-demo-authenticated';
+      const updateAccountLinks = () => {
+        const isSignedIn = localStorage.getItem(authStorageKey) === 'true';
+          document.getElementById('valuationLoginLink').hidden = isSignedIn;
+        document.getElementById('valuationSignupLink').hidden = isSignedIn;
+        document.getElementById('valuationDashboardLink').hidden = !isSignedIn;
+        document.getElementById('valuationSignOutLink').hidden = !isSignedIn;
+        document.getElementById('valuationPortalLink').hidden = isSignedIn;
+        document.getElementById('valuationAccountPortalLink').hidden = !isSignedIn;
+      };
+
+      (window.sierraReady || Promise.resolve(null)).then(updateAccountLinks);
+      window.addEventListener('storage', event => {
+        if (event.key === authStorageKey || event.key === null) updateAccountLinks();
+      });
+
+      const header = document.querySelector('.lp-header');
+      if (!header) return;
+
+      const updateHeader = () => {
+        header.classList.toggle('lp-scrolled', window.scrollY > 50);
+      };
+
+      window.addEventListener('scroll', updateHeader, { passive: true });
+      updateHeader();
+    })();
+  </script>
+</body>
+</html>

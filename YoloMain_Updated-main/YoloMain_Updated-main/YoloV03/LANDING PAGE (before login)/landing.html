@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#26385F">
+  <title>Padilla's Haven | Find Your Next Home</title>
+  <link rel="stylesheet" href="Style.css">
+  <script src="landing.js" defer></script>
+</head>
+<body>
+<div class="lp-wrapper">
+  <!-- Navigation -->
+  <header class="lp-header" id="lp-header">
+    <div class="lp-container lp-nav-container">
+      <a href="./landing.html" class="lp-logo">
+        <img class="lp-logo-icon" src="../MAIN%20WEB/assets/sierra-haven-mark.png" alt="" aria-hidden="true"> Padilla's Haven
+      </a>
+      <nav class="lp-nav-menu" id="lp-nav-menu">
+        <ul class="lp-nav-list">
+          <li><a href="#home" class="lp-nav-link">Home</a></li>
+          <li><a href="#properties" class="lp-nav-link">Properties</a></li>
+          <li><a href="#about" class="lp-nav-link">About Us</a></li>
+          <li><a href="#how-it-works" class="lp-nav-link">How It Works</a></li>
+          <li><a href="#contact" class="lp-nav-link">Contact</a></li>
+        </ul>
+        <div class="lp-auth-group">
+          <a href="../LOGIN%20PANEL/Index.html?mode=login" class="lp-btn lp-btn-text">Log In</a>
+          <a href="../LOGIN%20PANEL/Index.html?mode=signup" class="lp-btn lp-btn-primary">Sign Up</a>
+        </div>
+      </nav>
+      <button class="lp-mobile-toggle" id="lp-mobile-toggle" aria-label="Toggle menu" aria-controls="lp-nav-menu" aria-expanded="false">
+        <span class="lp-hamburger"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="lp-hero" id="home">
+    <img src="../LOGIN%20PANEL/bg.jpg" alt="A welcoming home at dusk"
+         class="lp-hero-bg" fetchpriority="high" decoding="sync">
+    <div class="lp-hero-overlay"></div>
+    <div class="lp-container lp-hero-content">
+      <h1 class="lp-reveal lp-reveal-up">Find a Place That Feels Like Home.</h1>
+      <p class="lp-reveal lp-reveal-up lp-delay-1">Discover premium properties and experience modern leasing designed for your convenience.</p>
+      
+      <!-- Search Interface -->
+      <div class="lp-search-panel lp-reveal lp-reveal-up lp-delay-2">
+        <form class="lp-search-form" id="lp-search-form" action="../LOGIN%20PANEL/Index.html">
+          <div class="lp-input-group">
+            <label for="lp-location">Location</label>
+            <input type="text" id="lp-location" placeholder="City or Neighborhood">
+          </div>
+          <div class="lp-input-group">
+            <label for="lp-type">Property Type</label>
+            <select id="lp-type">
+              <option value="all">All Types</option>
+              <option value="apartment">Apartment</option>
+              <option value="house">House</option>
+              <option value="villa">Luxury Villa</option>
+            </select>
+          </div>
+          <button type="submit" class="lp-btn lp-btn-primary lp-search-btn">Search</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistics Section -->
+  <section class="lp-stats" aria-label="Portal highlights">
+    <div class="lp-container lp-stats-grid">
+      <div class="lp-stat-item lp-reveal lp-reveal-up">
+        <span class="lp-stat-number">One</span>
+        <span class="lp-stat-label">place to explore listings</span>
+      </div>
+      <div class="lp-stat-item lp-reveal lp-reveal-up lp-delay-1">
+        <span class="lp-stat-number">Clear</span>
+        <span class="lp-stat-label">details to compare homes</span>
+      </div>
+      <div class="lp-stat-item lp-reveal lp-reveal-up lp-delay-2">
+        <span class="lp-stat-number">Helpful</span>
+        <span class="lp-stat-label">support when you need it</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="lp-about" id="about" aria-labelledby="about-title">
+    <div class="lp-container lp-about-grid">
+      <div class="lp-about-copy lp-reveal lp-reveal-up">
+        <p class="lp-section-kicker">About Padilla's Haven</p>
+        <h2 id="about-title">A more thoughtful way to find a place to call home.</h2>
+        <p class="lp-about-lead">Finding a home is a personal decision. Padilla's Haven brings property discovery and leasing information into one straightforward experience, so you can focus on choosing a place that fits your life.</p>
+        <p>Explore available homes, review the details that matter, and take the next step when you are ready. Our goal is to make the search feel clear, considered, and easy to navigate.</p>
+        <a href="../LOGIN%20PANEL/Index.html?mode=signup" class="lp-link-arrow">Explore the portal &rarr;</a>
+      </div>
+      <aside class="lp-about-card lp-reveal lp-reveal-up lp-delay-1" aria-label="Our approach">
+        <p class="lp-section-kicker">Our approach</p>
+        <h3>Built around your next move</h3>
+        <ul class="lp-about-list">
+          <li><span aria-hidden="true">01</span><div><strong>Start with what matters</strong><p>Choose a location and property type to begin exploring.</p></div></li>
+          <li><span aria-hidden="true">02</span><div><strong>Compare with confidence</strong><p>Review listing details and see which options suit your needs.</p></div></li>
+          <li><span aria-hidden="true">03</span><div><strong>Take the next step</strong><p>Sign in to continue to the property workspace or reach out for help.</p></div></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Featured Properties Section -->
+  <section class="lp-properties" id="properties">
+    <div class="lp-container">
+      <div class="lp-section-header lp-reveal lp-reveal-up">
+        <h2>Exclusive Listings</h2>
+        <a href="#properties" class="lp-link-arrow">Explore properties &rarr;</a>
+      </div>
+      <p class="lp-section-intro">Browse a sample listing to get a feel for the information available in the portal. Availability and listing details should be confirmed with an agent.</p>
+      
+      <div class="lp-property-grid" id="lp-property-grid">
+        <!-- Property Card 1 -->
+        <article class="lp-property-card lp-reveal lp-reveal-up">
+          <div class="lp-card-image-wrapper">
+            <!-- Native Lazy Loading -->
+            <img src="../LOGIN%20PANEL/bg.jpg" alt="A modern property available for rent"
+                 loading="lazy" decoding="async" width="600" height="400" class="lp-card-image">
+            <span class="lp-badge">For Rent</span>
+          </div>
+          <div class="lp-card-content">
+            <h3 class="lp-card-title">The Grand View Residences</h3>
+            <p class="lp-card-location">Downtown Financial District</p>
+            <div class="lp-card-details">
+              <span>🛏️ 3 Beds</span>
+              <span>🛁 2 Baths</span>
+              <span>📐 1,450 sqft</span>
+            </div>
+            <div class="lp-card-footer">
+              <span class="lp-card-price">$4,200 <small>/mo</small></span>
+              <a href="../LOGIN%20PANEL/Index.html" class="lp-btn lp-btn-outline">View Details</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="lp-how" id="how-it-works" aria-labelledby="how-title">
+    <div class="lp-container">
+      <div class="lp-centered-heading lp-reveal lp-reveal-up">
+        <p class="lp-section-kicker">A simple process</p>
+        <h2 id="how-title">From browsing to your next step</h2>
+        <p>Start with a quick search, explore the available information, and connect when you are ready to move forward.</p>
+      </div>
+      <div class="lp-steps-grid">
+        <article class="lp-step-card lp-reveal lp-reveal-up">
+          <span class="lp-step-number">01</span>
+          <h3>Discover</h3>
+          <p>Use the search panel to start exploring by location and property type.</p>
+        </article>
+        <article class="lp-step-card lp-reveal lp-reveal-up lp-delay-1">
+          <span class="lp-step-number">02</span>
+          <h3>Review</h3>
+          <p>Browse listing details and make a shortlist of places worth a closer look.</p>
+        </article>
+        <article class="lp-step-card lp-reveal lp-reveal-up lp-delay-2">
+          <span class="lp-step-number">03</span>
+          <h3>Connect</h3>
+          <p>Sign in to continue to the portal, or contact the team with your questions.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="lp-faq" id="faq" aria-labelledby="faq-title">
+    <div class="lp-container lp-faq-container">
+      <div class="lp-centered-heading lp-reveal lp-reveal-up">
+        <p class="lp-section-kicker">Good to know</p>
+        <h2 id="faq-title">Frequently asked questions</h2>
+      </div>
+      <div class="lp-faq-list">
+        <details class="lp-faq-item">
+          <summary>Can I browse without creating an account?</summary>
+          <p>Yes. You can explore this landing page without signing in. The sign-in panel currently uses demo access and does not verify or save account details.</p>
+        </details>
+        <details class="lp-faq-item">
+          <summary>Are the properties shown here live listings?</summary>
+          <p>The property shown is sample content for this website demo. Contact an agent to confirm real availability, pricing, and property information.</p>
+        </details>
+        <details class="lp-faq-item">
+          <summary>How can I ask a question about a property?</summary>
+          <p>Use the contact link below to email the support team. Include the property name and your question so the team can direct your inquiry.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="lp-cta">
+    <div class="lp-container lp-cta-content lp-reveal lp-reveal-up">
+      <h2>Ready to find your next home?</h2>
+      <p>Explore the sample listings, then sign in to continue to the property workspace or contact the team for assistance.</p>
+      <div class="lp-cta-actions">
+        <a href="../LOGIN%20PANEL/Index.html?mode=login" class="lp-btn lp-btn-primary">Sign In to Continue</a>
+        <a href="mailto:support@haven.example" class="lp-btn lp-btn-outline-light">Contact an Agent</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="lp-footer" id="contact">
+    <div class="lp-container lp-footer-grid">
+      <div class="lp-footer-brand">
+        <h3>Padilla's Haven</h3>
+        <p>A clear, welcoming place to explore property listings and take the next step toward your home.</p>
+      </div>
+      <div class="lp-footer-links">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#properties">All Properties</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#faq">Frequently Asked Questions</a></li>
+        </ul>
+      </div>
+      <div class="lp-footer-links">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:support@haven.example">Email Support</a></li>
+          <li><a href="../LOGIN%20PANEL/Index.html?mode=login">Log In</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="lp-container lp-footer-bottom">
+      <p>&copy; 2026 Padilla's Haven. All rights reserved.</p>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
