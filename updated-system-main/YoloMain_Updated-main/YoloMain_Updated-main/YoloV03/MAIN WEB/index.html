@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#26385F">
+  <meta name="description" content="Discover homes, explore leasing options, and estimate property values with SIERRA HAVEN.">
+  <title>SIERRA HAVEN | Property &amp; Lease Portal</title>
+  <link rel="stylesheet" href="landing.css">
+  <link rel="stylesheet" href="design-system.css">
+  <link rel="stylesheet" href="button-interactions.css">
+  <script src="landing.js" defer></script>
+</head>
+<body>
+<div class="lp-wrapper">
+  <!-- Navigation -->
+  <header class="lp-header" id="lp-header">
+    <div class="lp-container lp-nav-container">
+      <a href="index.html" class="lp-logo navbar-logo">
+        <img class="lp-logo-icon" src="assets/sierra-haven-mark.png" alt="" aria-hidden="true">
+        <span>SIERRA HAVEN</span>
+      </a>
+      <nav class="lp-nav-menu" id="lp-nav-menu">
+        <ul class="lp-nav-list">
+          <li><a href="#home" class="lp-nav-link">Home</a></li>
+          <li><a href="#properties" class="lp-nav-link">Properties</a></li>
+          <li><a href="#about" class="lp-nav-link">About Us</a></li>
+          <li><a href="#how-it-works" class="lp-nav-link">How It Works</a></li>
+          <li><a href="valuation.html" class="lp-nav-link">AI Valuation</a></li>
+          <li><a href="../LOGIN%20PANEL/Index.html?mode=signup" class="lp-nav-link">Property Portal</a></li>
+        </ul>
+        <div class="lp-auth-group">
+          <button type="button" class="lp-theme-toggle" id="lp-theme-toggle" aria-label="Switch to light mode" aria-pressed="false">
+            <span class="lp-theme-icon" aria-hidden="true">☀</span>
+            <span class="lp-theme-label">Light mode</span>
+          </button>
+          <a href="../LOGIN%20PANEL/Index.html?mode=login" class="lp-btn lp-btn-text">Log In</a>
+          <a href="../LOGIN%20PANEL/Index.html?mode=signup" class="lp-btn lp-btn-primary lp-signup-button">Sign Up</a>
+        </div>
+      </nav>
+      <button class="lp-mobile-toggle" id="lp-mobile-toggle" aria-label="Toggle menu" aria-controls="lp-nav-menu" aria-expanded="false">
+        <span class="lp-hamburger"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="lp-hero hero-section" id="home">
+    <video class="lp-hero-bg lp-hero-video" muted loop playsinline preload="metadata"
+           aria-hidden="true" tabindex="-1">
+      <source src="../video%27/videoplayback.mp4" type="video/mp4">
+    </video>
+    <div class="lp-hero-overlay bg-gradient-mesh" aria-hidden="true"></div>
+    <div class="lp-container lp-hero-content">
+      <h1 class="lp-reveal lp-reveal-up">Find a Place That Feels Like <span class="lp-home-transform"><span class="lp-home-word">Home</span><svg class="lp-home-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M5 22.5 24 7l19 15.5M11 19v22h26V19M20 41V28h8v13" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5"/><path d="M17 20h14" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5"/></svg></span>.</h1>
+      <p class="lp-reveal lp-reveal-up lp-delay-1">Discover premium properties and experience modern leasing designed for your convenience.</p>
+
+      <!-- Search Interface -->
+      <div class="lp-search-panel search-panel lp-reveal lp-reveal-up lp-delay-2">
+        <form class="lp-search-form" id="lp-search-form">
+          <div class="lp-input-group">
+            <label for="lp-location">Location</label>
+            <input type="text" id="lp-location" name="location" placeholder="City or Neighborhood">
+          </div>
+          <div class="lp-input-group">
+            <label for="lp-type">Property Type</label>
+            <select id="lp-type" name="type">
+              <option value="all">All Types</option>
+              <option value="apartment">Apartment</option>
+              <option value="house">House</option>
+              <option value="villa">Luxury Villa</option>
+              <option value="condominium">Condominium</option>
+              <option value="townhouse">Townhouse</option>
+              <option value="commercial">Commercial</option>
+              <option value="single-family">Single-family</option>
+            </select>
+          </div>
+          <button type="submit" class="lp-btn lp-btn-primary lp-search-btn">Search</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistics Section -->
+  <section class="lp-stats" aria-label="Portal highlights">
+    <div class="lp-container lp-stats-grid">
+      <div class="lp-stat-item lp-reveal lp-reveal-up">
+        <span class="lp-stat-kicker">01 <span aria-hidden="true">/</span> DISCOVER</span>
+        <span class="lp-stat-number">Find your place.</span>
+        <span class="lp-stat-label">Explore quality properties in one place.</span>
+      </div>
+      <div class="lp-stat-item lp-reveal lp-reveal-up lp-delay-1">
+        <span class="lp-stat-kicker">02 <span aria-hidden="true">/</span> COMPARE</span>
+        <span class="lp-stat-number">Choose with clarity.</span>
+        <span class="lp-stat-label">See the details that make a difference.</span>
+      </div>
+      <div class="lp-stat-item lp-reveal lp-reveal-up lp-delay-2">
+        <span class="lp-stat-kicker">03 <span aria-hidden="true">/</span> MOVE FORWARD</span>
+        <span class="lp-stat-number">Feel at home, sooner.</span>
+        <span class="lp-stat-label">Get helpful support along the way.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="lp-about" id="about" aria-labelledby="about-title">
+    <div class="lp-container lp-about-grid">
+      <div class="lp-about-copy lp-reveal lp-reveal-up">
+        <p class="lp-section-kicker">About SIERRA HAVEN</p>
+        <h2 id="about-title">A more thoughtful way to find a place to call home.</h2>
+        <p class="lp-about-lead">Finding a home is a personal decision. SIERRA HAVEN brings property discovery and leasing information into one straightforward experience, so you can focus on choosing a place that fits your life.</p>
+        <p>Explore available homes, review the details that matter, and take the next step when you are ready. Our goal is to make the search feel clear, considered, and easy to navigate.</p>
+        <a href="../LOGIN%20PANEL/Index.html?mode=signup" class="lp-link-arrow">Explore the property portal &rarr;</a>
+        <a href="valuation.html" class="lp-link-arrow">Estimate a property value &rarr;</a>
+      </div>
+      <aside class="lp-about-card lp-reveal lp-reveal-up lp-delay-1" aria-label="Our approach">
+        <p class="lp-section-kicker">Our approach</p>
+        <h3>Built around your next move</h3>
+        <ul class="lp-about-list">
+          <li><span aria-hidden="true">01</span><div><strong>Start with what matters</strong><p>Choose a location and property type to begin exploring.</p></div></li>
+          <li><span aria-hidden="true">02</span><div><strong>Compare with confidence</strong><p>Review listing details and see which options suit your needs.</p></div></li>
+          <li><span aria-hidden="true">03</span><div><strong>Take the next step</strong><p>Sign in to continue to the property workspace or reach out for help.</p></div></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Featured Properties Section -->
+  <section class="lp-properties" id="properties">
+    <div class="lp-container">
+      <div class="lp-section-header lp-reveal lp-reveal-up">
+        <h2>Exclusive Listings</h2>
+        <a href="#properties" class="lp-link-arrow">Explore properties &rarr;</a>
+      </div>
+      <p class="lp-section-intro">Browse apartments, houses, and other available properties. Availability and listing details should be confirmed with an agent.</p>
+      <p class="lp-search-status" id="lp-search-status" role="status" aria-live="polite" hidden></p>
+      <div class="lp-search-empty" id="lp-search-empty" hidden>
+        <p>No listings match those filters. Try a broader search or show all listings.</p>
+        <button type="button" class="lp-btn lp-btn-outline" id="lp-clear-search">Show all listings</button>
+      </div>
+      
+      <div class="lp-property-grid" id="lp-property-grid">
+        <!-- Property Card 1 -->
+        <article class="lp-property-card lp-reveal lp-reveal-up" data-location="downtown financial district" data-type="apartment">
+          <div class="lp-card-image-wrapper">
+            <!-- Native Lazy Loading -->
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="Modern luxury apartment residence surrounded by landscaped grounds"
+                 loading="lazy" decoding="async" width="600" height="400" class="lp-card-image">
+            <span class="lp-badge">For Sale</span>
+          </div>
+          <div class="lp-card-content">
+            <h3 class="lp-card-title">The Grand View Residences</h3>
+            <p class="lp-card-location">Downtown Financial District</p>
+            <div class="lp-card-details">
+              <span>🛏️ 3 Beds</span>
+              <span>🛁 2 Baths</span>
+              <span>📐 1,450 sqft</span>
+            </div>
+            <div class="lp-card-footer">
+              <span class="lp-card-price">₱4,200,000</span>
+              <a href="../LOGIN%20PANEL/Index.html?property=grand-view" class="lp-btn lp-btn-outline">View Details</a>
+            </div>
+          </div>
+        </article>
+        <article class="lp-property-card lp-reveal lp-reveal-up" data-location="riverside arts district" data-type="apartment">
+          <div class="lp-card-image-wrapper">
+            <img src="https://cdn.polyhaven.com/asset_img/primary/brown_photostudio_02.png?width=1200" alt="Contemporary apartment building with balconies"
+                 loading="lazy" decoding="async" width="600" height="400" class="lp-card-image">
+            <span class="lp-badge">For Sale</span>
+          </div>
+          <div class="lp-card-content">
+            <h3 class="lp-card-title">Riverside Lofts</h3>
+            <p class="lp-card-location">Riverside Arts District</p>
+            <div class="lp-card-details">
+              <span>🛏️ 2 Beds</span>
+              <span>🛁 2 Baths</span>
+              <span>📐 1,100 sqft</span>
+            </div>
+            <div class="lp-card-footer">
+              <span class="lp-card-price">₱685,000</span>
+              <a href="../LOGIN%20PANEL/Index.html?property=riverside-lofts" class="lp-btn lp-btn-outline">View Details</a>
+            </div>
+          </div>
+        </article>
+        <article class="lp-property-card lp-reveal lp-reveal-up" data-location="north park" data-type="house">
+          <div class="lp-card-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="Welcoming detached family home with a landscaped front yard"
+                 loading="lazy" decoding="async" width="600" height="400" class="lp-card-image">
+            <span class="lp-badge">For Sale</span>
+          </div>
+          <div class="lp-card-content">
+            <h3 class="lp-card-title">North Park Family Home</h3>
+            <p class="lp-card-location">North Park</p>
+            <div class="lp-card-details">
+              <span>🛏️ 4 Beds</span>
+              <span>🛁 3 Baths</span>
+              <span>📐 2,250 sqft</span>
+            </div>
+            <div class="lp-card-footer">
+              <span class="lp-card-price">₱925,000</span>
+              <a href="../LOGIN%20PANEL/Index.html?property=north-park-home" class="lp-btn lp-btn-outline">View Details</a>
+            </div>
+          </div>
+        </article>
+        <article class="lp-property-card lp-reveal lp-reveal-up" data-location="coastal point" data-type="villa">
+          <div class="lp-card-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="Realistic modern coastal villa with a swimming pool and palm trees"
+                 loading="lazy" decoding="async" width="600" height="400" class="lp-card-image">
+            <span class="lp-badge">For Sale</span>
+          </div>
+          <div class="lp-card-content">
+            <h3 class="lp-card-title">Coastal Point Villa</h3>
+            <p class="lp-card-location">Coastal Point</p>
+            <div class="lp-card-details">
+              <span>🛏️ 5 Beds</span>
+              <span>🛁 4 Baths</span>
+              <span>📐 3,400 sqft</span>
+            </div>
+            <div class="lp-card-footer">
+              <span class="lp-card-price">₱2,450,000</span>
+              <a href="../LOGIN%20PANEL/Index.html?property=coastal-villa" class="lp-btn lp-btn-outline">View Details</a>
+            </div>
+          </div>
+        </article>
+        <article class="lp-property-card lp-reveal lp-reveal-up" data-location="midtown central district" data-type="apartment">
+          <div class="lp-card-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="Modern high-rise exterior in the city center"
+                 loading="lazy" decoding="async" width="600" height="400" class="lp-card-image">
+            <span class="lp-badge">For Sale</span>
+          </div>
+          <div class="lp-card-content">
+            <h3 class="lp-card-title">Midtown Central Suite</h3>
+            <p class="lp-card-location">Midtown Central District</p>
+            <div class="lp-card-details">
+              <span>🛏️ 1 Bed</span>
+              <span>🛁 1 Bath</span>
+              <span>📐 820 sqft</span>
+            </div>
+            <div class="lp-card-footer">
+              <span class="lp-card-price">₱510,000</span>
+              <a href="../LOGIN%20PANEL/Index.html?property=midtown-suite" class="lp-btn lp-btn-outline">View Details</a>
+            </div>
+          </div>
+        </article>
+        <article class="lp-property-card lp-reveal lp-reveal-up" data-location="oakwood heights" data-type="house">
+          <div class="lp-card-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="Townhouse-style home with a landscaped front yard"
+                 loading="lazy" decoding="async" width="600" height="400" class="lp-card-image">
+            <span class="lp-badge">For Sale</span>
+          </div>
+          <div class="lp-card-content">
+            <h3 class="lp-card-title">Oakwood Heights Townhouse</h3>
+            <p class="lp-card-location">Oakwood Heights</p>
+            <div class="lp-card-details">
+              <span>🛏️ 3 Beds</span>
+              <span>🛁 2.5 Baths</span>
+              <span>📐 1,680 sqft</span>
+            </div>
+            <div class="lp-card-footer">
+              <span class="lp-card-price">₱745,000</span>
+              <a href="../LOGIN%20PANEL/Index.html?property=oakwood-townhouse" class="lp-btn lp-btn-outline">View Details</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="lp-how" id="how-it-works" aria-labelledby="how-title">
+    <div class="lp-container">
+      <div class="lp-centered-heading lp-reveal lp-reveal-up">
+        <p class="lp-section-kicker">A simple process</p>
+        <h2 id="how-title">From browsing to your next step</h2>
+        <p>Start with a quick search, explore the available information, and connect when you are ready to move forward.</p>
+      </div>
+      <div class="lp-steps-grid">
+        <article class="lp-step-card lp-reveal lp-reveal-up">
+          <span class="lp-step-number">01</span>
+          <h3>Discover</h3>
+          <p>Use the search panel to start exploring by location and property type.</p>
+        </article>
+        <article class="lp-step-card lp-reveal lp-reveal-up lp-delay-1">
+          <span class="lp-step-number">02</span>
+          <h3>Review</h3>
+          <p>Browse listing details and make a shortlist of places worth a closer look.</p>
+        </article>
+        <article class="lp-step-card lp-reveal lp-reveal-up lp-delay-2">
+          <span class="lp-step-number">03</span>
+          <h3>Connect</h3>
+          <p>Sign in to continue to the portal, or contact the team with your questions.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="lp-faq" id="faq" aria-labelledby="faq-title">
+    <div class="lp-container lp-faq-container">
+      <div class="lp-centered-heading lp-reveal lp-reveal-up">
+        <p class="lp-section-kicker">Good to know</p>
+        <h2 id="faq-title">Frequently asked questions</h2>
+      </div>
+      <div class="lp-faq-list">
+        <details class="lp-faq-item">
+          <summary>Can I browse without creating an account?</summary>
+          <p>Yes. You can explore this landing page without signing in. Portal accounts use Supabase authentication, and account features depend on the connected project being configured correctly.</p>
+        </details>
+        <details class="lp-faq-item">
+          <summary>Are the properties shown here live listings?</summary>
+          <p>The listings shown here are sample content for this website demo. Contact an agent to confirm real availability, pricing, and property information.</p>
+        </details>
+        <details class="lp-faq-item">
+          <summary>How can I ask a question about a property?</summary>
+          <p>Use the contact link below to email the support team. Include the property name and your question so the team can direct your inquiry.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="lp-cta">
+    <div class="lp-container lp-cta-content lp-reveal lp-reveal-up">
+      <h2>Ready to find your next home?</h2>
+      <p>Explore available sample listings, visit the property portal, or get an AI-assisted estimate for your property.</p>
+      <div class="lp-cta-actions">
+        <a href="../LOGIN%20PANEL/Index.html?mode=signup" class="lp-btn lp-btn-primary">Explore the Property Portal</a>
+        <a href="valuation.html" class="lp-btn lp-btn-outline-light">Get an AI Valuation</a>
+        <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=s78941652%40gmail.com" target="_blank" rel="noopener noreferrer" class="lp-btn lp-btn-outline-light">Contact an Agent</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="lp-footer" id="contact">
+    <div class="lp-container lp-footer-grid">
+      <div class="lp-footer-brand">
+        <h3>SIERRA HAVEN</h3>
+        <p>A clear, welcoming place to explore property listings and take the next step toward your home.</p>
+      </div>
+      <div class="lp-footer-links">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#properties">All Properties</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#faq">Frequently Asked Questions</a></li>
+          <li><a href="valuation.html">AI Property Valuation</a></li>
+          <li><a href="help-center.html">Help Center</a></li>
+          <li><a href="../LOGIN%20PANEL/Index.html?mode=signup">Property Portal</a></li>
+        </ul>
+      </div>
+      <div class="lp-footer-links">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="help-center.html">Help Center</a></li>
+          <li><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=s78941652%40gmail.com" target="_blank" rel="noopener noreferrer">Email Support</a></li>
+          <li><a href="../LOGIN%20PANEL/Index.html?mode=signup">Sign Up</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="lp-container lp-footer-bottom">
+      <p>&copy; 2026 SIERRA HAVEN. All rights reserved.</p>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

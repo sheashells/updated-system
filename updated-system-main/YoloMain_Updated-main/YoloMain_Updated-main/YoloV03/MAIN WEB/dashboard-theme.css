@@ -1,0 +1,555 @@
+.dashboard-bg {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  color: #eef3ff;
+  --crimson: #dc2626;
+  --crimson-glow: #dc2626;
+  --dark-crimson: #991b1b;
+  --wine: #7f1d1d;
+  --crimson-rgb: 220 38 38;
+  background-color: #08142d;
+  background-image:
+    radial-gradient(ellipse 72% 58% at 10% 4%, rgb(37 99 235 / 30%), transparent 74%),
+    radial-gradient(ellipse 65% 60% at 94% 92%, rgb(220 38 38 / 24%), transparent 74%),
+    linear-gradient(135deg, #09152d, #17264a 56%, #21182d);
+}
+
+.dashboard-bg::before {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgb(2 8 23 / 16%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(2 8 23 / 16%) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, #000 14%, transparent 92%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 14%, transparent 92%);
+}
+
+.dashboard-bg > * {
+  z-index: 1;
+}
+
+.admin-dashboard > main,
+.ai-dashboard > .page-shell,
+.ai-dashboard > footer,
+.tenant-dashboard > .app-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.glass-panel,
+.dashboard-bg .metric-card,
+.dashboard-bg .panel,
+.dashboard-bg .summary-card,
+.dashboard-bg .property-modal,
+.dashboard-bg .property-form,
+.dashboard-bg .modal-content,
+.dashboard-bg .agent-team-card,
+.dashboard-bg .agent-activity-card,
+.dashboard-bg .application-detail-section,
+.dashboard-bg .lease-detail-section,
+.dashboard-bg .maintenance-detail-section,
+.dashboard-bg .property-interest-row {
+  color: #eef3ff;
+  background: linear-gradient(145deg, rgb(25 43 78 / 86%), rgb(10 22 46 / 90%));
+  border: 1px solid rgb(255 255 255 / 15%);
+  box-shadow: 0 18px 45px rgb(2 8 23 / 28%), inset 0 1px 0 rgb(255 255 255 / 6%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.dashboard-bg :focus-visible {
+  outline: 2px solid #8db0e8;
+  outline-offset: 3px;
+}
+
+.dashboard-bg .sidebar-nav {
+  color: #eef3ff;
+}
+
+.dashboard-bg aside.sidebar-nav,
+.dashboard-bg .sidebar {
+  color: #eef3ff;
+  background:
+    radial-gradient(ellipse at 12% 0%, rgb(37 99 235 / 32%), transparent 66%),
+    linear-gradient(180deg, rgb(8 20 45 / 97%), rgb(12 20 42 / 96%) 60%, rgb(40 18 39 / 94%));
+  border-right: 1px solid rgb(255 255 255 / 12%);
+  box-shadow: 12px 0 36px rgb(2 8 23 / 24%);
+}
+
+.admin-dashboard > aside {
+  color: #eef3ff;
+  background:
+    radial-gradient(ellipse at 12% 0%, rgb(37 99 235 / 32%), transparent 66%),
+    linear-gradient(180deg, rgb(8 20 45 / 97%), rgb(12 20 42 / 96%) 60%, rgb(40 18 39 / 94%));
+  border-right: 1px solid rgb(255 255 255 / 12%);
+  box-shadow: 12px 0 36px rgb(2 8 23 / 24%);
+}
+
+.dashboard-bg .sidebar-brand,
+.dashboard-bg .brand {
+  color: #f5f8ff;
+  border-bottom-color: rgb(255 255 255 / 12%);
+}
+
+.dashboard-bg .brand-mark {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.dashboard-bg .brand-emblem {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.dashboard-bg .brand-caption,
+.dashboard-bg .menu-label,
+.dashboard-bg .nav-label,
+.dashboard-bg .sidebar-footer,
+.dashboard-bg .sidebar-note,
+.dashboard-bg .help-card p {
+  color: rgb(238 243 255 / 68%);
+}
+
+.dashboard-bg .sidebar-nav .menu-item a,
+.dashboard-bg .sidebar-nav a {
+  color: rgb(238 243 255 / 78%);
+}
+
+.dashboard-bg .sidebar-nav .menu-item.active a,
+.dashboard-bg .sidebar-nav a:hover,
+.dashboard-bg .sidebar-nav a[aria-current="page"] {
+  color: #fff;
+  background: linear-gradient(100deg, rgb(37 99 235 / 28%), rgb(220 38 38 / 13%));
+  box-shadow: inset 3px 0 #60a5fa;
+}
+
+.dashboard-bg .sidebar-note,
+.dashboard-bg .help-card {
+  border: 1px solid rgb(255 255 255 / 15%);
+  background: rgb(255 255 255 / 6%);
+}
+
+.dashboard-bg .topbar,
+.dashboard-bg main > header,
+.dashboard-bg .user-profile {
+  color: #eef3ff;
+  background: rgb(8 20 45 / 78%);
+  border-color: rgb(255 255 255 / 14%);
+  box-shadow: 0 12px 32px rgb(2 8 23 / 20%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.dashboard-bg .main-area,
+.dashboard-bg main {
+  background: transparent;
+}
+
+.dashboard-bg h1,
+.dashboard-bg h2,
+.dashboard-bg h3,
+.dashboard-bg .panel-title,
+.dashboard-bg .metric-info p,
+.dashboard-bg .metric-info h3,
+.dashboard-bg .metric-value,
+.dashboard-bg .summary-value,
+.dashboard-bg .summary-label,
+.dashboard-bg .summary-note,
+.dashboard-bg .profile-name,
+.dashboard-bg .breadcrumb strong,
+.dashboard-bg .panel-heading h2,
+.dashboard-bg .detail-value,
+.dashboard-bg .property-name,
+.dashboard-bg .management-entity {
+  color: #f5f8ff;
+}
+
+.dashboard-bg p,
+.dashboard-bg .header-subtitle,
+.dashboard-bg .date-label,
+.dashboard-bg .breadcrumb,
+.dashboard-bg .panel-heading p,
+.dashboard-bg .summary-note,
+.dashboard-bg .text-muted,
+.dashboard-bg .metric-info h3 {
+  color: rgb(238 243 255 / 72%);
+}
+
+.dashboard-bg .metric-card,
+.dashboard-bg .summary-card {
+  border-radius: 16px;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.dashboard-bg .metric-card:hover,
+.dashboard-bg .summary-card:hover,
+.dashboard-bg .panel:hover,
+.dashboard-bg .agent-team-card:hover,
+.dashboard-bg .agent-activity-card:hover {
+  border-color: rgb(141 176 232 / 36%);
+  box-shadow: 0 22px 52px rgb(2 8 23 / 34%), 0 0 24px rgb(37 99 235 / 12%);
+}
+
+.dashboard-bg main table {
+  color: #eef3ff;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: transparent;
+}
+
+.dashboard-bg main th {
+  color: rgb(238 243 255 / 78%);
+  background: rgb(5 14 32 / 48%);
+  border-bottom: 1px solid rgb(255 255 255 / 14%);
+}
+
+.dashboard-bg main td {
+  color: rgb(245 248 255 / 88%);
+  border-bottom: 1px solid rgb(255 255 255 / 10%);
+}
+
+.dashboard-bg main tbody tr {
+  transition: background-color 160ms ease;
+}
+
+.dashboard-bg main tbody tr:hover {
+  background: rgb(141 176 232 / 9%);
+}
+
+.dashboard-bg main input,
+.dashboard-bg main select,
+.dashboard-bg main textarea,
+.dashboard-bg .ai-input-container input,
+.dashboard-bg .ai-input-container select,
+.dashboard-bg .ai-input-container textarea,
+.dashboard-bg dialog input,
+.dashboard-bg dialog select,
+.dashboard-bg dialog textarea {
+  color: #f5f8ff;
+  background: rgb(5 14 32 / 68%);
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: 10px;
+}
+
+.dashboard-bg main input::placeholder,
+.dashboard-bg main textarea::placeholder,
+.dashboard-bg dialog input::placeholder,
+.dashboard-bg dialog textarea::placeholder {
+  color: rgb(238 243 255 / 58%);
+}
+
+.dashboard-bg main input:focus,
+.dashboard-bg main select:focus,
+.dashboard-bg main textarea:focus,
+.dashboard-bg dialog input:focus,
+.dashboard-bg dialog select:focus,
+.dashboard-bg dialog textarea:focus {
+  border-color: #8db0e8;
+  box-shadow: 0 0 0 3px rgb(141 176 232 / 18%);
+}
+
+.dashboard-bg .add-property-btn,
+.dashboard-bg .submit-btn,
+.dashboard-bg .submit-request,
+.dashboard-bg .modal-save {
+  color: #fff;
+  background: linear-gradient(110deg, #2563eb 0%, #102448 54%, #dc2626 100%);
+  border: 1px solid rgb(255 255 255 / 12%);
+  box-shadow: 0 10px 26px rgb(2 8 23 / 24%);
+}
+
+.dashboard-bg .add-property-btn:hover,
+.dashboard-bg .submit-btn:hover,
+.dashboard-bg .submit-request:hover,
+.dashboard-bg .modal-save:hover {
+  background: linear-gradient(110deg, #1d4ed8 0%, #0b1b38 54%, #b91c1c 100%);
+}
+
+.dashboard-bg .status-success,
+.dashboard-bg .status-info,
+.dashboard-bg .status-pill.completed,
+.dashboard-bg .payment-status,
+.dashboard-bg .lease-status-badge {
+  color: #dbeafe;
+  background: rgb(37 99 235 / 22%);
+}
+
+.dashboard-bg .status-warning,
+.dashboard-bg .status-danger,
+.dashboard-bg .payment-status.pending {
+  color: #fee2e2;
+  background: rgb(220 38 38 / 20%);
+}
+
+.dashboard-bg .status-badge,
+.dashboard-bg .status-pill,
+.dashboard-bg .payment-status,
+.dashboard-bg .lease-status-badge {
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 999px;
+}
+
+.dashboard-bg .status-badge.status-warning {
+  color: #fef3c7;
+  background: rgb(180 83 9 / 24%);
+}
+
+.dashboard-bg dialog {
+  color: #eef3ff;
+  background: linear-gradient(145deg, rgb(25 43 78 / 98%), rgb(10 22 46 / 98%));
+  border: 1px solid rgb(255 255 255 / 18%);
+  box-shadow: 0 24px 80px rgb(2 8 23 / 50%);
+}
+
+.dashboard-bg dialog::backdrop {
+  background: rgb(2 8 23 / 60%);
+  backdrop-filter: blur(4px);
+}
+
+.tenant-dashboard .request-button,
+.tenant-dashboard .receipt-button,
+.tenant-dashboard .request-row-button,
+.admin-dashboard .property-action {
+  color: #eef3ff;
+  background: rgb(5 14 32 / 58%);
+  border-color: rgb(255 255 255 / 18%);
+}
+
+.tenant-dashboard .request-button:hover,
+.tenant-dashboard .receipt-button:hover,
+.tenant-dashboard .request-row-button:hover,
+.admin-dashboard .property-action:hover {
+  color: #fff;
+  background: rgb(37 99 235 / 24%);
+  border-color: rgb(141 176 232 / 48%);
+}
+
+.ai-dashboard .page-shell {
+  background: transparent;
+}
+
+.ai-dashboard .topbar {
+  background: rgb(8 20 45 / 88%);
+  border-bottom-color: rgb(255 255 255 / 12%);
+  box-shadow: 0 10px 28px rgb(2 8 23 / 20%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.ai-dashboard .hero {
+  color: #f5f8ff;
+  background:
+    linear-gradient(110deg, rgb(8 20 45 / 76%), rgb(8 20 45 / 52%)),
+    radial-gradient(ellipse at 10% 15%, rgb(37 99 235 / 48%), transparent 68%),
+    radial-gradient(ellipse at 92% 86%, rgb(220 38 38 / 36%), transparent 65%),
+    linear-gradient(135deg, #09152d, #17264a 56%, #28182f);
+  border: 1px solid rgb(255 255 255 / 15%);
+  backdrop-filter: blur(14px);
+}
+
+.ai-dashboard .hero h1,
+.ai-dashboard .hero h2,
+.ai-dashboard .hero p,
+.ai-dashboard .hero .eyebrow {
+  color: #f5f8ff;
+}
+
+.ai-dashboard .card,
+.ai-dashboard .hero-panel,
+.ai-dashboard .metric-box,
+.ai-dashboard .chart-wrap,
+.ai-dashboard .insight-box {
+  color: #eef3ff;
+  background: linear-gradient(145deg, rgb(25 43 78 / 86%), rgb(10 22 46 / 90%));
+  border: 1px solid rgb(255 255 255 / 15%);
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgb(2 8 23 / 28%), inset 0 1px 0 rgb(255 255 255 / 6%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.ai-dashboard .card {
+  border-left: 1px solid rgb(255 255 255 / 15%);
+}
+
+.ai-dashboard .form-header h2,
+.ai-dashboard .result-header h3,
+.ai-dashboard .result-price,
+.ai-dashboard .metric-box strong,
+.ai-dashboard label,
+.ai-dashboard .insight-box p,
+.ai-dashboard .metric-box span {
+  color: #eef3ff;
+}
+
+.ai-dashboard .metric-box,
+.ai-dashboard .chart-wrap,
+.ai-dashboard .insight-box {
+  background-color: rgb(5 14 32 / 48%);
+}
+
+.ai-dashboard .field input,
+.ai-dashboard .field select,
+.ai-dashboard .ai-input-container input,
+.ai-dashboard .ai-input-container select {
+  min-height: 46px;
+  color: #f5f8ff;
+  background: rgb(5 14 32 / 68%);
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: 10px;
+}
+
+.ai-dashboard .field input::placeholder {
+  color: rgb(238 243 255 / 58%);
+}
+
+.ai-dashboard .field input:focus,
+.ai-dashboard .field select:focus {
+  border-color: #8db0e8;
+  box-shadow: 0 0 0 3px rgb(141 176 232 / 18%);
+}
+
+.ai-dashboard .brand-mark {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.tenant-dashboard .topbar {
+  background: rgb(8 20 45 / 88%);
+}
+
+.tenant-dashboard .app-shell {
+  background: transparent;
+}
+
+.tenant-dashboard .sidebar {
+  background:
+    radial-gradient(ellipse at 12% 0%, rgb(37 99 235 / 32%), transparent 66%),
+    linear-gradient(180deg, rgb(8 20 45 / 97%), rgb(12 20 42 / 96%) 60%, rgb(40 18 39 / 94%));
+}
+
+.tenant-dashboard .summary-card {
+  display: block;
+}
+
+.tenant-dashboard .overview-lease,
+.tenant-dashboard .overview-payments {
+  --card-accent: #60a5fa;
+  --card-halo: rgb(37 99 235 / 32%);
+  --card-halo-soft: rgb(37 99 235 / 12%);
+}
+
+.tenant-dashboard .overview-maintenance,
+.tenant-dashboard .overview-activity {
+  --card-accent: #f87171;
+  --card-halo: rgb(220 38 38 / 28%);
+  --card-halo-soft: rgb(220 38 38 / 10%);
+}
+
+.tenant-dashboard .summary-icon,
+.tenant-dashboard .overview-link,
+.tenant-dashboard .overview-card .summary-icon,
+.tenant-dashboard .overview-card .overview-link {
+  color: #c7d9ff;
+  background-color: rgb(37 99 235 / 20%);
+}
+
+.tenant-dashboard .overview-card .summary-value,
+.tenant-dashboard .overview-card .summary-note {
+  color: #f5f8ff;
+}
+
+.tenant-dashboard .home-property-image {
+  border-radius: 13px;
+}
+
+.tenant-dashboard .panel-heading p,
+.tenant-dashboard .property-copy p,
+.tenant-dashboard .request-copy span,
+.tenant-dashboard .activity-item p,
+.tenant-dashboard .notice-card p,
+.tenant-dashboard .detail-label,
+.tenant-dashboard .rewards-disclaimer,
+.tenant-dashboard .rewards-progress-copy span {
+  color: rgb(238 243 255 / 72%);
+}
+
+.tenant-dashboard .notice-card,
+.tenant-dashboard .notification-item,
+.tenant-dashboard .notification-item.is-unread,
+.tenant-dashboard .maintenance-insight {
+  color: #eef3ff;
+  background: rgb(5 14 32 / 52%);
+  border-color: rgb(255 255 255 / 14%);
+}
+
+.tenant-dashboard .notice-card strong,
+.tenant-dashboard .maintenance-insight strong {
+  color: #f5f8ff;
+}
+
+.tenant-dashboard .notification-item strong,
+.tenant-dashboard .request-copy strong,
+.tenant-dashboard .maintenance-technician-card strong {
+  color: #f5f8ff;
+}
+
+.tenant-dashboard .icon-button,
+.tenant-dashboard .close-button,
+.tenant-dashboard .cancel-button {
+  color: #eef3ff;
+  background: rgb(5 14 32 / 58%);
+  border-color: rgb(255 255 255 / 18%);
+}
+
+.tenant-dashboard .avatar {
+  color: #f5f8ff;
+  background: rgb(37 99 235 / 28%);
+}
+
+@media (min-width: 761px) and (max-width: 1100px) {
+  .tenant-dashboard .home-property-card {
+    display: grid;
+    grid-template-columns: minmax(120px, 180px) minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .tenant-dashboard .home-property-image {
+    width: 100%;
+  }
+
+  .tenant-dashboard .home-property-actions {
+    grid-column: 2;
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .admin-dashboard > aside,
+  .dashboard-bg .sidebar {
+    border-right: 0;
+    border-bottom: 1px solid rgb(255 255 255 / 12%);
+  }
+
+  .tenant-dashboard .topbar {
+    background: rgb(8 20 45 / 94%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-bg *,
+  .dashboard-bg *::before,
+  .dashboard-bg *::after {
+    scroll-behavior: auto;
+    transition-duration: 0.01ms !important;
+  }
+}
