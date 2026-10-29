@@ -59,41 +59,6 @@
     });
   };
 
-  const setupThemeToggle = () => {
-    const wrapper = document.querySelector('.lp-wrapper');
-    const toggle = document.getElementById('lp-theme-toggle');
-    if (!wrapper || !toggle) return;
-
-    const storageKey = 'haven-landing-theme';
-    const applyTheme = (theme) => {
-      const isLight = theme === 'light';
-      wrapper.dataset.theme = isLight ? 'light' : 'dark';
-      document.documentElement.style.colorScheme = isLight ? 'light' : 'dark';
-      toggle.setAttribute('aria-pressed', String(isLight));
-      toggle.setAttribute('aria-label', `Switch to ${isLight ? 'dark' : 'light'} mode`);
-      toggle.querySelector('.lp-theme-label').textContent = `${isLight ? 'Dark' : 'Light'} mode`;
-      toggle.querySelector('.lp-theme-icon').textContent = isLight ? '☾' : '☀';
-    };
-
-    let savedTheme = 'dark';
-    try {
-      savedTheme = localStorage.getItem(storageKey) || 'dark';
-    } catch (error) {
-      console.warn('Unable to load the saved color theme.', error);
-    }
-    applyTheme(savedTheme);
-
-    toggle.addEventListener('click', () => {
-      const nextTheme = wrapper.dataset.theme === 'dark' ? 'light' : 'dark';
-      applyTheme(nextTheme);
-      try {
-        localStorage.setItem(storageKey, nextTheme);
-      } catch (error) {
-        console.warn('Unable to save the selected color theme.', error);
-      }
-    });
-  };
-
   // 3. Mobile Navigation Toggle
   const setupMobileNav = () => {
     const toggleBtn = document.getElementById('lp-mobile-toggle');
@@ -223,7 +188,7 @@
     footer.className = 'lp-card-footer';
     const price = document.createElement('span');
     price.className = 'lp-card-price';
-    price.textContent = `₱${(Number(property.rent) || 0).toLocaleString('en-PH')} / mo`;
+    price.textContent = `$${(Number(property.rent) || 0).toLocaleString()} / mo`;
     const link = document.createElement('a');
     link.className = 'lp-btn lp-btn-outline';
     link.href = `../LOGIN%20PANEL/Index.html?property=${encodeURIComponent(property.id || '')}`;
@@ -268,58 +233,18 @@
   const setupSearchForm = () => {
     const form = document.getElementById('lp-search-form');
     const status = document.getElementById('lp-search-status');
-    const emptyState = document.getElementById('lp-search-empty');
-    const clearButton = document.getElementById('lp-clear-search');
-    const locationInput = document.getElementById('lp-location');
-    const typeInput = document.getElementById('lp-type');
-    if (!form || !status || !emptyState || !clearButton || !locationInput || !typeInput) return;
-
-    const normalizeText = (value) => value
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .toLocaleLowerCase()
-      .replace(/[^a-z0-9]+/g, ' ')
-      .trim();
-
-    const typeAliases = {
-      apartment: ['apartment'],
-      house: ['house', 'single family'],
-      villa: ['villa'],
-      condominium: ['condominium', 'condo'],
-      townhouse: ['townhouse'],
-      commercial: ['commercial'],
-      'single-family': ['single family', 'house']
-    };
-
-    const getPropertyCards = () => Array.from(document.querySelectorAll('.lp-property-card'));
-    const showAllListings = () => {
-      const propertyCards = getPropertyCards();
-      locationInput.value = '';
-      typeInput.value = 'all';
-      propertyCards.forEach(card => { card.hidden = false; });
-      emptyState.hidden = true;
-      status.hidden = false;
-      status.textContent = `Showing all ${propertyCards.length} listings.`;
-      document.getElementById('properties').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    };
+    if (!form || !status) return;
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const locationTerms = normalizeText(locationInput.value).split(/\s+/).filter(Boolean);
-      const type = typeInput.value;
-      const aliases = typeAliases[type] || [];
-      const propertyCards = getPropertyCards();
+      const location = document.getElementById('lp-location').value.trim().toLowerCase();
+      const type = document.getElementById('lp-type').value;
+      const propertyCards = document.querySelectorAll('.lp-property-card');
       let matches = 0;
 
       propertyCards.forEach((card) => {
-        const searchableText = normalizeText([
-          card.dataset.location,
-          card.querySelector('.lp-card-title')?.textContent,
-          card.querySelector('.lp-card-location')?.textContent
-        ].filter(Boolean).join(' '));
-        const matchesLocation = locationTerms.every(term => searchableText.includes(term));
-        const cardType = normalizeText(`${card.dataset.type || ''} ${card.querySelector('.lp-card-title')?.textContent || ''}`);
-        const matchesType = type === 'all' || aliases.some(alias => cardType.includes(normalizeText(alias)));
+        const matchesLocation = !location || card.dataset.location.includes(location);
+        const matchesType = type === 'all' || card.dataset.type === type;
         const isMatch = matchesLocation && matchesType;
         card.hidden = !isMatch;
         if (isMatch) matches += 1;
@@ -328,16 +253,13 @@
       status.hidden = false;
       status.textContent = matches
         ? `${matches} ${matches === 1 ? 'listing matches' : 'listings match'} your search.`
-        : 'No matching listings found.';
-      emptyState.hidden = matches > 0;
+        : 'No listings match those filters. Try another location or property type.';
       if (window.location.hash === '#properties') {
         document.getElementById('properties').scrollIntoView({ behavior: 'smooth', block: 'start' });
       } else {
         window.location.hash = 'properties';
       }
     });
-
-    clearButton.addEventListener('click', showAllListings);
   };
 
   // Initialize
@@ -345,7 +267,6 @@
     setupScrollReveals();
     setupStickyNav();
     setupHeroVideo();
-    setupThemeToggle();
     setupMobileNav();
     setupScrollNavigation();
     setupPropertyListings();

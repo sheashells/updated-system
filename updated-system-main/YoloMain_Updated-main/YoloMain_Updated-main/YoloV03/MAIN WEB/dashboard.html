@@ -87,13 +87,13 @@
               <section class="settings-view" data-settings-content="contact" hidden>
                 <h2>Contact info</h2>
                 <p class="settings-muted">SIERRA HAVEN support</p>
-                <p><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=s78941652%40gmail.com" target="_blank" rel="noopener noreferrer">s78941652@gmail.com</a></p>
+                <p><a href="mailto:support@haven.example">support@haven.example</a></p>
               </section>
 
               <section class="settings-view" data-settings-content="help" hidden>
                 <h2>Help</h2>
                 <p class="settings-note">Browse available properties from the dashboard. For assistance, contact the support team.</p>
-                <a href="help-center.html">Visit the Help Center</a>
+                <a href="mailto:support@haven.example">Get help</a>
               </section>
 
               <div class="theme-setting">
@@ -158,7 +158,7 @@
             <p class="eyebrow">For Sale · Sample listing</p>
             <h3>The Grand View Residences</h3>
             <p>Downtown Financial District · 3 beds · 2 baths · 1,450 sqft</p>
-            <strong class="listing-price">₱4,200,000</strong>
+            <strong class="listing-price">$4,200,000</strong>
             <div class="card-actions"><button class="action-btn" type="button" data-view-property>View details</button><button class="action-btn secondary" type="button" data-buy-property>I'm interested in buying</button></div>
           </div>
         </article>
@@ -168,7 +168,7 @@
             <p class="eyebrow">For Sale · Sample listing</p>
             <h3>Riverside Lofts</h3>
             <p>Riverside Arts District · 2 beds · 2 baths · 1,100 sqft</p>
-            <strong class="listing-price">₱685,000</strong>
+            <strong class="listing-price">$685,000</strong>
             <div class="card-actions"><button class="action-btn" type="button" data-view-property>View details</button><button class="action-btn secondary" type="button" data-buy-property>I'm interested in buying</button></div>
           </div>
         </article>
@@ -178,7 +178,7 @@
             <p class="eyebrow">For Sale · Sample listing</p>
             <h3>North Park Family Home</h3>
             <p>North Park · 4 beds · 3 baths · 2,250 sqft</p>
-            <strong class="listing-price">₱925,000</strong>
+            <strong class="listing-price">$925,000</strong>
             <div class="card-actions"><button class="action-btn" type="button" data-view-property>View details</button><button class="action-btn secondary" type="button" data-buy-property>I'm interested in buying</button></div>
           </div>
         </article>
@@ -188,7 +188,7 @@
             <p class="eyebrow">For Sale · Sample listing</p>
             <h3>Coastal Point Villa</h3>
             <p>Coastal Point · 5 beds · 4 baths · 3,400 sqft</p>
-            <strong class="listing-price">₱2,450,000</strong>
+            <strong class="listing-price">$2,450,000</strong>
             <div class="card-actions"><button class="action-btn" type="button" data-view-property>View details</button><button class="action-btn secondary" type="button" data-buy-property>I'm interested in buying</button></div>
           </div>
         </article>
@@ -198,7 +198,7 @@
             <p class="eyebrow">For Sale · Sample listing</p>
             <h3>Midtown Central Suite</h3>
             <p>Midtown Central District · 1 bed · 1 bath · 820 sqft</p>
-            <strong class="listing-price">₱510,000</strong>
+            <strong class="listing-price">$510,000</strong>
             <div class="card-actions"><button class="action-btn" type="button" data-view-property>View details</button><button class="action-btn secondary" type="button" data-buy-property>I'm interested in buying</button></div>
           </div>
         </article>
@@ -208,7 +208,7 @@
             <p class="eyebrow">For Sale · Sample listing</p>
             <h3>Oakwood Heights Townhouse</h3>
             <p>Oakwood Heights · 3 beds · 2.5 baths · 1,680 sqft</p>
-            <strong class="listing-price">₱745,000</strong>
+            <strong class="listing-price">$745,000</strong>
             <div class="card-actions"><button class="action-btn" type="button" data-view-property>View details</button><button class="action-btn secondary" type="button" data-buy-property>I'm interested in buying</button></div>
           </div>
         </article>
@@ -251,7 +251,7 @@
       </section>
       <p class="catalog-notice" id="propertyDialogNotice" role="status" aria-live="polite" hidden></p>
       <div class="property-dialog-actions">
-        <a class="action-btn secondary" id="propertyAgentLink" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=s78941652%40gmail.com" target="_blank" rel="noopener noreferrer">Contact agent</a>
+        <a class="action-btn secondary" id="propertyAgentLink" href="mailto:support@haven.example">Contact agent</a>
         <button class="action-btn" type="button" id="propertyBuyButton">I'm interested in buying</button>
       </div>
       <p class="demo-disclaimer">Sample listing only. This records a non-binding inquiry in this browser; it is not an offer, purchase, contract, or payment.</p>
@@ -262,7 +262,7 @@
     const propertyDetails = {
       'grand-view': {
         name: 'The Grand View Residences', location: 'Downtown Financial District',
-        beds: '3', baths: '2', area: '1,450 sqft', price: '₱4,200,000',
+        beds: '3', baths: '2', area: '1,450 sqft', price: '$4,200,000',
         description: 'A spacious city residence with an open-plan living area, generous natural light, and convenient access to downtown dining and transit.',
         panorama: 'https://cdn.polyhaven.com/asset_img/primary/glasshouse_interior.png?width=1600',
         panoramaCredit: 'Poly Haven — Glasshouse Interior',
@@ -271,7 +271,7 @@
       },
       'riverside-lofts': {
         name: 'Riverside Lofts', location: 'Riverside Arts District',
-        beds: '2', baths: '2', area: '1,100 sqft', price: '₱685,000',
+        beds: '2', baths: '2', area: '1,100 sqft', price: '$685,000',
         description: 'A contemporary loft-style home near the riverfront, local galleries, cafes, and walking paths.',
         panorama: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/LWH_Living_room_pano.jpg/1280px-LWH_Living_room_pano.jpg',
         panoramaCredit: 'THD3 — LWH living room panorama',
@@ -280,7 +280,7 @@
       },
       'north-park-home': {
         name: 'North Park Family Home', location: 'North Park',
-        beds: '4', baths: '3', area: '2,250 sqft', price: '₱925,000',
+        beds: '4', baths: '3', area: '2,250 sqft', price: '$925,000',
         description: 'A sample family home with multiple living spaces, a practical floor plan, and room to work or entertain.',
         panorama: 'https://cdn.polyhaven.com/asset_img/primary/studio_country_hall.png?width=1600',
         panoramaCredit: 'Poly Haven — Studio Country Hall',
@@ -289,7 +289,7 @@
       },
       'coastal-villa': {
         name: 'Coastal Point Villa', location: 'Coastal Point',
-        beds: '5', baths: '4', area: '3,400 sqft', price: '₱2,450,000',
+        beds: '5', baths: '4', area: '3,400 sqft', price: '$2,450,000',
         description: 'A sample coastal villa with spacious indoor and outdoor living areas close to the shoreline.',
         panorama: 'https://cdn.polyhaven.com/asset_img/primary/relax_inn_seaview_suite.png?width=1600',
         panoramaCredit: 'Poly Haven — Relax Inn Seaview Suite',
@@ -298,7 +298,7 @@
       },
       'midtown-suite': {
         name: 'Midtown Central Suite', location: 'Midtown Central District',
-        beds: '1', baths: '1', area: '820 sqft', price: '₱510,000',
+        beds: '1', baths: '1', area: '820 sqft', price: '$510,000',
         description: 'A well-planned city suite close to shops, restaurants, and everyday transit connections.',
         panorama: 'https://cdn.polyhaven.com/asset_img/primary/kiara_interior.png?width=1600',
         panoramaCredit: 'Poly Haven — Kiara Interior',
@@ -307,7 +307,7 @@
       },
       'oakwood-townhouse': {
         name: 'Oakwood Heights Townhouse', location: 'Oakwood Heights',
-        beds: '3', baths: '2.5', area: '1,680 sqft', price: '₱745,000',
+        beds: '3', baths: '2.5', area: '1,680 sqft', price: '$745,000',
         description: 'A sample multi-level townhouse in a residential neighborhood, with flexible space and convenient local amenities.',
         panorama: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0d/Guesthouse_living_room_%28gh-livingroom-pan%29.jpg/1280px-Guesthouse_living_room_%28gh-livingroom-pan%29.jpg',
         panoramaCredit: 'ESO — Guesthouse living room',
@@ -419,7 +419,7 @@
       document.getElementById('propertyDialogFacts').textContent = `${property.beds} beds · ${property.baths} baths · ${property.area}`;
       document.getElementById('propertyDialogPrice').textContent = property.price;
       document.getElementById('propertyDialogDescription').textContent = property.description;
-      document.getElementById('propertyAgentLink').href = `https://mail.google.com/mail/?view=cm&fs=1&to=s78941652%40gmail.com&su=${encodeURIComponent(`Property inquiry: ${property.name}`)}`;
+      document.getElementById('propertyAgentLink').href = `mailto:support@haven.example?subject=${encodeURIComponent(`Property inquiry: ${property.name}`)}`;
       document.getElementById('propertyDialogNotice').hidden = true;
       const tourStatus = document.getElementById('propertyTourStatus');
       document.getElementById('propertyTourDirection').textContent = 'Choose a direction to explore the sample room.';

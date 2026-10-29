@@ -366,7 +366,7 @@
         <div class="help-card">
           <strong>Need a hand?</strong>
           <p>Our property team is here to help with your home.</p>
-          <a href="../../MAIN%20WEB/help-center.html">Help center →</a>
+          <a href="mailto:support@haven.example">Contact support →</a>
         </div>
         <p class="sidebar-footer">SIERRA HAVEN · TENANT PORTAL</p>
       </div>
@@ -590,7 +590,7 @@
         <button class="close-button" type="button" id="closeRequestButton" aria-label="Close">×</button>
       </div>
       <div class="form-field">
-        <label for="issueType">Concern</label>
+        <label for="issueType">Issue type</label>
         <select id="issueType" required>
           <option value="">Choose a category</option>
           <option>Plumbing</option>
@@ -601,8 +601,8 @@
         </select>
       </div>
       <div class="form-field">
-        <label for="issueDescription">Notes</label>
-        <textarea id="issueDescription" maxlength="500" placeholder="Add details about the concern and where it is located." required></textarea>
+        <label for="issueDescription">What needs attention?</label>
+        <textarea id="issueDescription" maxlength="500" placeholder="Please describe the issue and where it is located." required></textarea>
       </div>
       <p class="form-message" id="formMessage" role="status" aria-live="polite"></p>
       <div class="dialog-actions">
@@ -625,7 +625,7 @@
       <p class="demo-note">Please contact property management to confirm payment instructions. Do not send account or card numbers by email.</p>
       <div class="dialog-actions">
         <button class="cancel-button" type="button" id="viewPaymentHistoryButton">View payment history</button>
-        <a class="submit-request" style="display:inline-flex;align-items:center;text-decoration:none" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=s78941652%40gmail.com&amp;su=November%20rent%20payment" target="_blank" rel="noopener noreferrer">Contact property team</a>
+        <a class="submit-request" style="display:inline-flex;align-items:center;text-decoration:none" href="mailto:support@haven.example?subject=November%20rent%20payment">Contact property team</a>
       </div>
     </div>
   </dialog>
@@ -669,9 +669,8 @@
         <div><h2 id="requestDetailsTitle">Maintenance request</h2><p id="requestDetailsMeta"></p></div>
         <button class="close-button" type="button" data-close-dialog="requestDetailsDialog" aria-label="Close">×</button>
       </div>
-      <p class="request-detail"><strong>Concern:</strong> <span id="requestDetailsConcern"></span></p>
-      <p class="request-detail"><strong>Notes:</strong> <span id="requestDetailsDescription"></span></p>
-      <div class="dialog-actions"><a class="submit-request" id="requestSupportLink" style="display:inline-flex;align-items:center;text-decoration:none" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=s78941652%40gmail.com&amp;su=Maintenance%20request%20follow-up" target="_blank" rel="noopener noreferrer">Contact property team</a></div>
+      <p class="request-detail" id="requestDetailsDescription"></p>
+      <div class="dialog-actions"><a class="submit-request" id="requestSupportLink" style="display:inline-flex;align-items:center;text-decoration:none" href="mailto:support@haven.example">Contact property team</a></div>
     </div>
   </dialog>
 
@@ -1012,9 +1011,9 @@
         const copy = document.createElement('span');
         copy.className = 'request-copy';
         const title = document.createElement('strong');
-        title.textContent = request.notes || request.description;
+        title.textContent = request.description;
         const detail = document.createElement('span');
-        detail.textContent = `${request.concern || request.category} · Submitted ${request.date} · Request #${request.id}`;
+        detail.textContent = `${request.category} · Submitted ${request.date} · Request #${request.id}`;
         copy.append(title, detail);
         main.append(icon, copy);
         const status = document.createElement('span');
@@ -1052,10 +1051,9 @@
     function openRequestDetails(id) {
       const savedRequest = savedRequests.find((request) => request.id === id);
       if (savedRequest) {
-        document.getElementById('requestDetailsTitle').textContent = savedRequest.concern || savedRequest.category;
+        document.getElementById('requestDetailsTitle').textContent = savedRequest.category;
         document.getElementById('requestDetailsMeta').textContent = `Request #${savedRequest.id} · Submitted ${savedRequest.date} · ${savedRequest.status}`;
-        document.getElementById('requestDetailsConcern').textContent = savedRequest.concern || savedRequest.category;
-        document.getElementById('requestDetailsDescription').textContent = savedRequest.notes || savedRequest.description;
+        document.getElementById('requestDetailsDescription').textContent = savedRequest.description;
       } else {
         const sampleRequests = {
           'SH-1048': { title: 'Leaking kitchen faucet', meta: 'Request #SH-1048 · Submitted October 8, 2026 · In progress', description: 'A leak was reported at the kitchen faucet. The property team is reviewing the request.' },
@@ -1065,7 +1063,6 @@
         if (!request) return;
         document.getElementById('requestDetailsTitle').textContent = request.title;
         document.getElementById('requestDetailsMeta').textContent = request.meta;
-        document.getElementById('requestDetailsConcern').textContent = request.title;
         document.getElementById('requestDetailsDescription').textContent = request.description;
       }
       requestDetailsDialog.showModal();
@@ -1314,9 +1311,7 @@
       const request = {
         id: `SH-${Date.now()}-${savedRequests.length + 1}`,
         category: issueType,
-        concern: issueType,
         description,
-        notes: description,
         date: dateFormatter.format(new Date()),
         status: 'Submitted'
       };
@@ -1334,9 +1329,9 @@
       const copy = document.createElement('span');
       copy.className = 'request-copy';
       const title = document.createElement('strong');
-      title.textContent = request.notes;
+      title.textContent = description;
       const detail = document.createElement('span');
-      detail.textContent = `${request.concern} · Submitted ${request.date} · Request #${request.id}`;
+      detail.textContent = `${issueType} · Submitted ${request.date} · Request #${request.id}`;
       copy.append(title, detail);
       main.append(icon, copy);
       const status = document.createElement('span');

@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#26385F">
+  <title>Sign in | SIERRA HAVEN</title>
+  <style>
+    :root {
+      --midnight: #26385F;
+      --deep-navy: #304573;
+      --electric-blue: #3569C8;
+      --sky-glow: #8DB0E8;
+      --royal-blue: #4778D8;
+      --crimson: #DC2626;
+      --crimson-glow: #FFA0B1;
+      --dark-crimson: #991B1B;
+      --wine: #93314C;
+      --cloud: #EEF3FF;
+      --pure-white: #F5F8FF;
+      --paper-white: #FFFFFF;
+      --text-dark: #102448;
+      --surface-primary: #2C416D;
+      --surface-secondary: #354C7A;
+      --surface-card: #3E588B;
+      --surface-hover: #4D689C;
+      --field-background: #EAF0FF;
+      --body-text: #0E1633;
+      --white: #F5F8FF;
+      --crimson-hover: #991B1B;
+      --blue-hover: #2858AE;
+      --midnight-rgb: 38 56 95;
+      --electric-blue-rgb: 53 105 200;
+      --sky-glow-rgb: 141 176 232;
+      --crimson-rgb: 204 59 86;
+      --cloud-rgb: 238 243 255;
+      --body-text-rgb: 16 36 72;
+      --white-rgb: 245 248 255;
+      --blue-glow: 0 0 10px rgb(141 176 232 / 25%), 0 0 25px rgb(53 105 200 / 20%);
+      --red-glow: 0 0 10px rgb(204 59 86 / 20%), 0 0 25px rgb(204 59 86 / 15%);
+      --card-shadow: 0 8px 30px rgb(0 0 0 / 22%);
+      --hero-gradient:
+        linear-gradient(135deg, rgb(5 12 30 / 44%), rgb(7 12 28 / 40%)),
+        radial-gradient(75% 60% at 18% 20%, #2563EB 0%, #1D4ED8 36%, transparent 76%),
+        radial-gradient(68% 58% at 88% 82%, #DC2626 0%, #9F1239 42%, transparent 78%),
+        linear-gradient(135deg, #08142D, #17264A 55%, #321326);
+      color-scheme: light;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      color: var(--body-text);
+      background: var(--hero-gradient);
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      --outer-photo-offset-x: 0px;
+      --outer-photo-offset-y: 0px;
+      --outer-photo-rotate-x: 0deg;
+      --outer-photo-rotate-y: 0deg;
+      min-width: 320px;
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 32px;
+      position: relative;
+      isolation: isolate;
+      overflow-x: hidden;
+      background: var(--hero-gradient);
+    }
+
+    body::before {
+      position: fixed;
+      z-index: -1;
+      inset: -24px;
+      content: "";
+      background:
+        linear-gradient(135deg, rgb(5 12 30 / 62%), rgb(7 12 28 / 48%)),
+        url("./login-villa-cover.jpg") center / cover no-repeat;
+      transform: perspective(1400px) translate3d(var(--outer-photo-offset-x), var(--outer-photo-offset-y), 0)
+        rotateX(var(--outer-photo-rotate-x)) rotateY(var(--outer-photo-rotate-y)) scale(1.04);
+      transition: transform 320ms cubic-bezier(.2, .7, .2, 1);
+      will-change: transform;
+    }
+
+    body::after {
+      position: fixed;
+      z-index: -1;
+      inset: 0;
+      content: "";
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgb(2 8 23 / 20%) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(2 8 23 / 20%) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse at center, #000 20%, transparent 88%);
+      -webkit-mask-image: radial-gradient(ellipse at center, #000 20%, transparent 88%);
+    }
+
+    .login-shell {
+      width: min(1120px, 100%);
+      min-height: 680px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      overflow: hidden;
+      background: transparent;
+      border: 1px solid rgb(var(--cloud-rgb) / 52%);
+      border-radius: 24px;
+      box-shadow: 0 28px 90px rgb(var(--midnight-rgb) / 30%);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .brand-panel {
+      --photo-offset-x: 0px;
+      --photo-offset-y: 0px;
+      --photo-rotate-x: 0deg;
+      --photo-rotate-y: 0deg;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 680px;
+      overflow: hidden;
+      padding: 42px 48px 36px;
+      color: var(--cloud);
+      background: #142442;
+      perspective: 1300px;
+    }
+
+    .brand-panel::before {
+      position: absolute;
+      z-index: 0;
+      inset: -3%;
+      content: "";
+      pointer-events: none;
+      background: url("./login-villa-cover.jpg") center / cover no-repeat;
+      transform: translate3d(var(--photo-offset-x), var(--photo-offset-y), 0)
+        rotateX(var(--photo-rotate-x)) rotateY(var(--photo-rotate-y)) scale(1.08);
+      transform-style: preserve-3d;
+      transition: transform 260ms cubic-bezier(.2, .7, .2, 1);
+      will-change: transform;
+    }
+
+    .brand-panel::after {
+      position: absolute;
+      z-index: 0;
+      content: "";
+      pointer-events: none;
+    }
+
+    .brand-panel::after {
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 100%;
+      background:
+        linear-gradient(180deg, rgb(8 16 32 / 22%), transparent 34%, rgb(8 16 32 / 76%)),
+        linear-gradient(115deg, rgb(8 16 32 / 20%), transparent 74%);
+    }
+
+    .brand-header,
+    .brand-copy,
+    .brand-footer { position: relative; z-index: 1; }
+
+    .brand-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 650;
+      letter-spacing: 0.01em;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      color: var(--midnight);
+      background: var(--cloud);
+      border-radius: 12px;
+    }
+
+    .brand-copy { max-width: 435px; margin-top: auto; padding: 56px 0 38px; }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--sky-glow);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .brand-copy h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(42px, 5vw, 62px);
+      font-weight: 400;
+      letter-spacing: -0.045em;
+      line-height: 1.06;
+    }
+
+    .brand-copy h1 span { color: var(--sky-glow); font-style: italic; }
+
+    .brand-copy > p:last-child {
+      max-width: 360px;
+      margin: 22px 0 0;
+      color: var(--cloud);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .property-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: fit-content;
+      margin-top: 30px;
+      padding: 12px 16px 12px 12px;
+      background: rgb(var(--cloud-rgb) / 9%);
+      border: 1px solid rgb(var(--cloud-rgb) / 13%);
+      border-radius: 14px;
+      backdrop-filter: blur(12px);
+    }
+
+    .property-icon {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      color: var(--cloud);
+      background: rgb(var(--electric-blue-rgb) / 28%);
+      border-radius: 10px;
+    }
+
+    .property-card strong,
+    .property-card span { display: block; }
+
+    .property-card .property-icon { display: grid; }
+
+    .property-card strong { font-size: 12px; font-weight: 600; }
+    .property-card span { margin-top: 4px; color: var(--cloud); font-size: 11px; }
+
+    .brand-footer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--cloud);
+      font-size: 11px;
+    }
+
+    .brand-footer svg { color: var(--sky-glow); }
+
+    .form-panel {
+      display: grid;
+      place-items: center;
+      padding: 56px;
+      background: var(--hero-gradient);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .form-content { width: min(100%, 370px); }
+
+    .form-content.mode-switching .form-heading {
+      animation: auth-heading-enter 300ms cubic-bezier(.2, .7, .25, 1) both;
+    }
+
+    .form-content.mode-switching #loginForm {
+      animation: auth-form-enter 340ms cubic-bezier(.2, .7, .25, 1) 45ms both;
+    }
+
+    .form-content.mode-switching[data-auth-mode="signup"] #nameField {
+      animation: signup-field-reveal 260ms cubic-bezier(.2, .7, .25, 1) 110ms both;
+    }
+
+    @keyframes auth-heading-enter {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes auth-form-enter {
+      from { opacity: 0; transform: translateY(10px) scale(.99); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes signup-field-reveal {
+      from { opacity: 0; clip-path: inset(0 0 100%); }
+      to { opacity: 1; clip-path: inset(0); }
+    }
+
+    .mobile-brand {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 44px;
+      color: var(--body-text);
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .mobile-brand .brand-mark { width: 34px; height: 34px; }
+
+    .form-heading { margin-bottom: 34px; }
+
+    .form-heading .eyebrow {
+      margin-bottom: 12px;
+      color: var(--sky-glow);
+      font-size: 10px;
+    }
+
+    .form-heading h2 {
+      margin: 0;
+      color: var(--body-text);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 38px;
+      font-weight: 400;
+      letter-spacing: -0.035em;
+    }
+
+    .form-heading p:last-child {
+      margin: 11px 0 0;
+      color: rgb(var(--body-text-rgb) / 68%);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .auth-choice {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      margin: 0 0 24px;
+      padding: 4px;
+      background: var(--cloud);
+      border: 1px solid rgb(var(--electric-blue-rgb) / 20%);
+      border-radius: 10px;
+    }
+
+    .auth-choice::before {
+      position: absolute;
+      top: 4px;
+      bottom: 4px;
+      left: 4px;
+      width: calc(50% - 4px);
+      content: "";
+      background: var(--electric-blue);
+      border-radius: 7px;
+      box-shadow: 0 1px 4px rgb(var(--midnight-rgb) / 12%);
+      pointer-events: none;
+      transition: transform 280ms cubic-bezier(.2, .75, .25, 1);
+    }
+
+    .auth-choice[data-auth-mode="signup"]::before {
+      transform: translateX(calc(100% + 4px));
+    }
+
+    .auth-choice button {
+      position: relative;
+      z-index: 1;
+      min-height: 40px;
+      color: rgb(var(--body-text-rgb) / 70%);
+      background: transparent;
+      border: 0;
+      border-radius: 7px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .auth-choice button[aria-selected="true"] {
+      color: var(--white);
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .auth-choice button[aria-selected="true"]:hover { background: rgb(var(--white-rgb) / 8%); }
+
+    .auth-choice button:focus-visible {
+      outline: 2px solid var(--sky-glow);
+      outline-offset: 2px;
+    }
+
+    [hidden] { display: none !important; }
+
+    .field { margin-bottom: 20px; }
+
+    .field label {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--body-text);
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .input-wrap { position: relative; }
+
+    .input-wrap > svg {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      width: 18px;
+      height: 18px;
+      color: rgb(var(--body-text-rgb) / 52%);
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .field input {
+      width: 100%;
+      height: 50px;
+      padding: 0 46px;
+      color: var(--body-text);
+      background: var(--field-background);
+      border: 1px solid rgb(var(--sky-glow-rgb) / 25%);
+      border-radius: 10px;
+      outline: none;
+      font: inherit;
+      font-size: 13px;
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .field input::placeholder { color: rgb(var(--body-text-rgb) / 62%); }
+
+    .field input:focus {
+      border-color: var(--sky-glow);
+      box-shadow: 0 0 0 3px rgb(var(--sky-glow-rgb) / 14%);
+    }
+
+    .password-toggle {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      color: rgb(var(--body-text-rgb) / 62%);
+      background: transparent;
+      border: 0;
+      border-radius: 6px;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+
+    .password-toggle:hover { color: var(--body-text); background: rgb(var(--electric-blue-rgb) / 12%); }
+    .password-toggle:focus-visible { outline: 2px solid var(--sky-glow); outline-offset: 2px; }
+
+    .form-options {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 26px;
+      margin: 1px 0 25px;
+      font-size: 12px;
+    }
+
+    .remember-option {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--cloud);
+      font-weight: 500;
+      cursor: pointer;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .remember-option input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .remember-option .switch-track {
+      position: relative;
+      width: 38px;
+      height: 22px;
+      background: rgb(var(--body-text-rgb) / 24%);
+      border-radius: 999px;
+      transition: background 180ms ease;
+      flex: 0 0 auto;
+    }
+
+    .remember-option .switch-track::before {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 16px;
+      height: 16px;
+      content: "";
+      background: var(--white);
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgb(var(--midnight-rgb) / 15%);
+      transition: transform 180ms ease;
+    }
+
+    .remember-option input:checked + .switch-track {
+      background: var(--electric-blue);
+    }
+
+    .remember-option input:checked + .switch-track::before {
+      transform: translateX(16px);
+    }
+
+    .remember-label {
+      color: var(--cloud);
+      font-weight: 500;
+    }
+
+    .text-link {
+      color: var(--electric-blue);
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .text-link:hover { color: var(--blue-hover); text-decoration: underline; }
+
+    .submit-button {
+      width: 100%;
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      color: var(--white);
+      background: var(--crimson);
+      border: 1px solid var(--crimson);
+      border-radius: 10px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 650;
+      transition: background 160ms ease, transform 160ms ease;
+    }
+
+    .submit-button:hover { background: var(--crimson-hover); }
+    .submit-button:active { transform: translateY(1px); }
+    .submit-button:focus-visible { outline: 3px solid rgb(var(--sky-glow-rgb) / 32%); outline-offset: 3px; }
+    .submit-button:disabled { cursor: wait; opacity: 0.75; }
+
+    .status-message {
+      min-height: 20px;
+      margin: 12px 0 0;
+      color: var(--crimson);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .status-message:empty { visibility: hidden; }
+    .status-message[data-state="success"] { color: var(--electric-blue); }
+
+    .form-divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 22px 0;
+      color: rgb(var(--body-text-rgb) / 50%);
+      font-size: 10px;
+    }
+
+    .form-divider::before,
+    .form-divider::after {
+      height: 1px;
+      flex: 1;
+      content: "";
+      background: rgb(var(--electric-blue-rgb) / 18%);
+    }
+
+    .ai-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      padding: 14px;
+      color: var(--body-text);
+      background: rgb(var(--electric-blue-rgb) / 5%);
+      border: 1px solid rgb(var(--electric-blue-rgb) / 16%);
+      border-radius: 11px;
+    }
+
+    .ai-note svg { flex: 0 0 auto; margin-top: 1px; color: var(--sky-glow); }
+    .ai-note strong { display: block; margin-bottom: 4px; color: var(--body-text); font-size: 11px; }
+    .ai-note p { margin: 0; font-size: 11px; line-height: 1.55; }
+
+    .form-footer {
+      margin: 30px 0 0;
+      color: rgb(var(--body-text-rgb) / 50%);
+      font-size: 10px;
+      text-align: center;
+    }
+
+    @media (max-width: 860px) {
+      body { padding: 20px; }
+      .login-shell { grid-template-columns: 0.9fr 1.1fr; }
+      .brand-panel { padding: 34px 32px 30px; }
+      .form-panel { padding: 42px 34px; }
+      .brand-copy h1 { font-size: 48px; }
+    }
+
+    @media (max-width: 640px) {
+      body { display: block; padding: 0; }
+      .login-shell {
+        width: 100%;
+        min-height: 100vh;
+        display: block;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+      .brand-panel { display: none; }
+      .form-panel {
+        min-height: 100vh;
+        padding: 34px 26px;
+        background: var(--hero-gradient);
+      }
+      .mobile-brand { display: flex; }
+      .form-heading h2 { font-size: 35px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+      body::before { transform: none; }
+    }
+  </style>
+  <link rel="stylesheet" href="../MAIN%20WEB/design-system.css">
+  <link rel="stylesheet" href="../MAIN%20WEB/button-interactions.css">
+</head>
+<body>
+  <main class="login-shell">
+    <section class="brand-panel" aria-labelledby="brand-title">
+      <div class="brand-header">
+        <span class="brand-mark brand-emblem-plate" aria-hidden="true">
+          <img class="brand-emblem" src="../MAIN%20WEB/assets/sierra-haven-mark.png" alt="">
+        </span>
+        <span>SIERRA HAVEN <span style="font-weight: 400; opacity: .8;">Property Portal</span></span>
+      </div>
+
+      <div class="brand-copy">
+        <p class="eyebrow">A better way to manage property</p>
+        <h1 id="brand-title">Every property.<br><span>One place.</span></h1>
+        <p>From the first application to the next lease, keep your properties, people, and portfolio moving forward.</p>
+        <div class="property-card">
+          <span class="property-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M4 20V9l8-5 8 5v11M8 20v-6h8v6M2.5 20h19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span><strong>Your portfolio, in good hands</strong><span>Properties, leases &amp; maintenance</span></span>
+        </div>
+      </div>
+
+      <div class="brand-footer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 3 5 6v5c0 4.7 3 8.1 7 10 4-1.9 7-5.3 7-10V6l-7-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        A secure workspace for your property team
+      </div>
+    </section>
+
+    <section class="form-panel login-panel" aria-labelledby="login-title">
+      <div class="form-content">
+        <div class="mobile-brand">
+          <span class="brand-mark brand-emblem-plate" aria-hidden="true">
+            <img class="brand-emblem" src="../MAIN%20WEB/assets/sierra-haven-mark.png" alt="">
+          </span>
+          <span>SIERRA HAVEN</span>
+        </div>
+
+        <header class="form-heading">
+          <p class="eyebrow">Welcome back</p>
+          <h2 id="login-title">Sign in to SIERRA HAVEN</h2>
+          <p>Sign in with your SIERRA HAVEN account to access the property portal.</p>
+        </header>
+
+        <div class="auth-choice" role="tablist" aria-label="Choose an account action">
+          <button type="button" id="loginTab" role="tab" aria-selected="true" aria-controls="loginForm">Log in</button>
+          <button type="button" id="signupTab" role="tab" aria-selected="false" aria-controls="loginForm" tabindex="-1">Sign up</button>
+        </div>
+
+        <form id="loginForm">
+          <div class="field" id="nameField" hidden>
+            <label for="fullName">Full name</label>
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M4.5 20c.7-3.4 3.4-5.2 7.5-5.2s6.8 1.8 7.5 5.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+              <input type="text" id="fullName" name="fullName" placeholder="Your name" autocomplete="name" pattern="[A-Za-z]+( [A-Za-z]+)*" title="Enter a name using letters A–Z, with spaces between names." inputmode="text" disabled>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">Work email</label>
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="3.5" y="5" width="17" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>
+                <path d="m4.5 7 7.5 6 7.5-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="username" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="4.5" y="10" width="15" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+              <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+              <button class="password-toggle" type="button" id="passwordToggle" aria-label="Show password" aria-pressed="false">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z" stroke="currentColor" stroke-width="1.6"/>
+                  <circle cx="12" cy="12" r="2.5" stroke="currentColor" stroke-width="1.6"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-options">
+            <label class="remember-option">
+              <input type="checkbox" name="remember">
+              <span class="switch-track" aria-hidden="true"></span>
+              <span class="remember-label">Keep me signed in</span>
+            </label>
+            <a class="text-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=s78941652%40gmail.com&amp;su=Password%20help" target="_blank" rel="noopener noreferrer">Forgot password?</a>
+          </div>
+
+          <button class="submit-button" id="submitButton" type="submit">
+            Sign in
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <p class="status-message" id="statusMessage" role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="form-divider">PROPERTY INTELLIGENCE</div>
+        <aside class="ai-note" aria-label="AI property valuation feature">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6 7 7m10 10 1.4 1.4m0-12.8L17 7M7 17l-1.4 1.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.6"/>
+            <path d="m10.5 12 1 1 2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <strong>Smarter property decisions</strong>
+            <p>Explore AI-assisted valuations informed by historical records and market trends.</p>
+          </div>
+        </aside>
+        <p class="form-footer">Secure sign-in powered by Supabase.</p>
+        <p class="form-footer"><a class="text-link" href="../MAIN%20WEB/index.html">Back to SIERRA HAVEN</a></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../MAIN%20WEB/supabase-client.js"></script>
+  <script>
+    const loginForm = document.getElementById("loginForm");
+    const passwordInput = document.getElementById("password");
+    const passwordToggle = document.getElementById("passwordToggle");
+    const submitButton = document.getElementById("submitButton");
+    const statusMessage = document.getElementById("statusMessage");
+    const loginTab = document.getElementById("loginTab");
+    const signupTab = document.getElementById("signupTab");
+    const nameField = document.getElementById("nameField");
+    const fullNameInput = document.getElementById("fullName");
+    const formTitle = document.getElementById("login-title");
+    const formEyebrow = document.querySelector(".form-heading .eyebrow");
+    const formDescription = document.querySelector(".form-heading p:last-child");
+    const rememberOptions = document.querySelector(".form-options");
+    const demoAuthStorageKey = "sierra-haven-demo-authenticated";
+    const brandPanel = document.querySelector(".brand-panel");
+    const formContent = document.querySelector(".form-content");
+    let modeAnimationTimer;
+    let isSignUp = false;
+
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const moveOuterPhotoWithPointer = (event) => {
+        if (event.pointerType === "touch" && event.pressure === 0) return;
+        const pointerX = event.clientX / window.innerWidth - 0.5;
+        const pointerY = event.clientY / window.innerHeight - 0.5;
+        document.body.style.setProperty("--outer-photo-offset-x", `${pointerX * -12}px`);
+        document.body.style.setProperty("--outer-photo-offset-y", `${pointerY * -12}px`);
+        document.body.style.setProperty("--outer-photo-rotate-x", `${pointerY * -1.5}deg`);
+        document.body.style.setProperty("--outer-photo-rotate-y", `${pointerX * 1.5}deg`);
+      };
+      const resetOuterPhotoPosition = () => {
+        document.body.style.setProperty("--outer-photo-offset-x", "0px");
+        document.body.style.setProperty("--outer-photo-offset-y", "0px");
+        document.body.style.setProperty("--outer-photo-rotate-x", "0deg");
+        document.body.style.setProperty("--outer-photo-rotate-y", "0deg");
+      };
+
+      window.addEventListener("pointermove", moveOuterPhotoWithPointer);
+      document.documentElement.addEventListener("pointerleave", resetOuterPhotoPosition);
+      window.addEventListener("pointercancel", resetOuterPhotoPosition);
+    }
+
+    if (brandPanel && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const movePhotoWithPointer = (event) => {
+        if (event.pointerType === "touch" && event.pressure === 0) return;
+        const bounds = brandPanel.getBoundingClientRect();
+        const pointerX = (event.clientX - bounds.left) / bounds.width - 0.5;
+        const pointerY = (event.clientY - bounds.top) / bounds.height - 0.5;
+        const horizontalOffset = pointerX * -24;
+        const verticalOffset = pointerY * -24;
+        brandPanel.style.setProperty("--photo-offset-x", `${horizontalOffset}px`);
+        brandPanel.style.setProperty("--photo-offset-y", `${verticalOffset}px`);
+        brandPanel.style.setProperty("--photo-rotate-x", `${pointerY * -5}deg`);
+        brandPanel.style.setProperty("--photo-rotate-y", `${pointerX * 5}deg`);
+      };
+      const resetPhotoPosition = () => {
+        brandPanel.style.setProperty("--photo-offset-x", "0px");
+        brandPanel.style.setProperty("--photo-offset-y", "0px");
+        brandPanel.style.setProperty("--photo-rotate-x", "0deg");
+        brandPanel.style.setProperty("--photo-rotate-y", "0deg");
+      };
+
+      brandPanel.addEventListener("pointermove", movePhotoWithPointer);
+      brandPanel.addEventListener("pointerleave", resetPhotoPosition);
+      brandPanel.addEventListener("pointercancel", resetPhotoPosition);
+    }
+
+    if (new URLSearchParams(window.location.search).get("signedOut") === "1") {
+      localStorage.removeItem(demoAuthStorageKey);
+      if (window.sierraSupabase) window.sierraSupabase.auth.signOut();
+    }
+
+    const setAuthMode = (signUp, animate = false) => {
+      const modeChanged = isSignUp !== signUp;
+      isSignUp = signUp;
+      formContent.dataset.authMode = signUp ? "signup" : "login";
+      document.querySelector(".auth-choice").dataset.authMode = signUp ? "signup" : "login";
+      loginTab.setAttribute("aria-selected", String(!signUp));
+      loginTab.tabIndex = signUp ? -1 : 0;
+      signupTab.setAttribute("aria-selected", String(signUp));
+      signupTab.tabIndex = signUp ? 0 : -1;
+      nameField.hidden = !signUp;
+      fullNameInput.disabled = !signUp;
+      fullNameInput.required = signUp;
+      passwordInput.autocomplete = signUp ? "new-password" : "current-password";
+      rememberOptions.hidden = signUp;
+      formEyebrow.textContent = signUp ? "Get started" : "Welcome back";
+      formTitle.textContent = signUp ? "Create your account" : "Sign in to SIERRA HAVEN";
+      document.title = signUp ? "Sign up | SIERRA HAVEN" : "Sign in | SIERRA HAVEN";
+      formDescription.textContent = signUp
+        ? "Create an account to access the SIERRA HAVEN property portal."
+        : "Sign in with your SIERRA HAVEN account to continue.";
+      submitButton.innerHTML = signUp
+        ? 'Sign up <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+        : 'Sign in <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      statusMessage.textContent = "";
+      statusMessage.removeAttribute("data-state");
+
+      if (animate && modeChanged) {
+        window.clearTimeout(modeAnimationTimer);
+        formContent.classList.remove("mode-switching");
+        void formContent.offsetWidth;
+        formContent.classList.add("mode-switching");
+        modeAnimationTimer = window.setTimeout(() => {
+          formContent.classList.remove("mode-switching");
+        }, 450);
+      }
+    };
+
+    loginTab.addEventListener("click", () => setAuthMode(false, true));
+    signupTab.addEventListener("click", () => setAuthMode(true, true));
+    [loginTab, signupTab].forEach((tab) => {
+      tab.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+          event.preventDefault();
+          const nextTab = tab === loginTab ? signupTab : loginTab;
+          nextTab.focus();
+          nextTab.click();
+        }
+      });
+    });
+
+    const requestedMode = new URLSearchParams(window.location.search).get("mode");
+    if (requestedMode === "signup") {
+      setAuthMode(true);
+      fullNameInput.focus();
+    }
+
+    passwordToggle.addEventListener("click", () => {
+      const showPassword = passwordInput.type === "password";
+      passwordInput.type = showPassword ? "text" : "password";
+      passwordToggle.setAttribute("aria-label", showPassword ? "Hide password" : "Show password");
+      passwordToggle.setAttribute("aria-pressed", String(showPassword));
+    });
+
+    loginForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      statusMessage.textContent = "";
+      statusMessage.removeAttribute("data-state");
+
+      const showMessage = (state, message) => {
+        submitButton.disabled = false;
+        setAuthMode(isSignUp);
+        statusMessage.dataset.state = state;
+        statusMessage.textContent = message;
+      };
+
+      const supabase = window.sierraSupabase;
+      if (!supabase) {
+        showMessage("error", "Cannot reach the database. Check your internet connection and that supabase-client.js is loading.");
+        return;
+      }
+
+      const email = document.getElementById("email").value.trim();
+      const password = passwordInput.value;
+
+      submitButton.disabled = true;
+      submitButton.textContent = isSignUp ? "Creating account..." : "Signing in...";
+
+      let result;
+      try {
+        if (isSignUp) {
+          const options = { data: { full_name: fullNameInput.value.trim() } };
+          // Email-confirmation links can only point back to the site when it runs on http(s).
+          if (window.location.protocol.startsWith("http")) {
+            options.emailRedirectTo = new URL("../MAIN%20WEB/dashboard.html", window.location.href).href;
+          }
+          result = await supabase.auth.signUp({ email, password, options });
+        } else {
+          result = await supabase.auth.signInWithPassword({ email, password });
+        }
+      } catch (error) {
+        console.error("Supabase request failed.", error);
+        showMessage("error", "Could not reach Supabase. Please try again.");
+        return;
+      }
+
+      const { data, error } = result;
+      if (error) {
+        showMessage("error", error.message);
+        return;
+      }
+
+      // Supabase returns a user with no identities when the email is already registered.
+      if (isSignUp && data.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) {
+        showMessage("error", "That email is already registered. Switch to Log in.");
+        return;
+      }
+
+      // If "Confirm email" is ON in Supabase, sign-up succeeds but there is no session yet.
+      if (!data.session) {
+        showMessage("success", "Account created. Check your email to confirm it, then log in.");
+        return;
+      }
+
+      statusMessage.dataset.state = "success";
+      statusMessage.textContent = isSignUp
+        ? "Account created. Opening property listings..."
+        : "Signed in. Opening property listings...";
+      window.setTimeout(() => {
+        const propertyId = new URLSearchParams(window.location.search).get("property");
+        const propertyIds = ["grand-view", "riverside-lofts", "north-park-home", "coastal-villa", "midtown-suite", "oakwood-townhouse"];
+        const propertyQuery = propertyIds.includes(propertyId) ? `?property=${encodeURIComponent(propertyId)}` : "";
+        window.location.assign(`../MAIN%20WEB/dashboard.html${propertyQuery}`);
+      }, 400);
+    });
+  </script>
+</body>
+</html>

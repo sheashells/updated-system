@@ -57,10 +57,6 @@
     * { box-sizing: border-box; }
 
     body {
-      --outer-photo-offset-x: 0px;
-      --outer-photo-offset-y: 0px;
-      --outer-photo-rotate-x: 0deg;
-      --outer-photo-rotate-y: 0deg;
       min-width: 320px;
       min-height: 100vh;
       margin: 0;
@@ -78,13 +74,7 @@
       z-index: -1;
       inset: -24px;
       content: "";
-      background:
-        linear-gradient(135deg, rgb(5 12 30 / 62%), rgb(7 12 28 / 48%)),
-        url("./login-villa-cover.jpg") center / cover no-repeat;
-      transform: perspective(1400px) translate3d(var(--outer-photo-offset-x), var(--outer-photo-offset-y), 0)
-        rotateX(var(--outer-photo-rotate-x)) rotateY(var(--outer-photo-rotate-y)) scale(1.04);
-      transition: transform 320ms cubic-bezier(.2, .7, .2, 1);
-      will-change: transform;
+      background: var(--hero-gradient);
     }
 
     body::after {
@@ -116,10 +106,6 @@
     }
 
     .brand-panel {
-      --photo-offset-x: 0px;
-      --photo-offset-y: 0px;
-      --photo-rotate-x: 0deg;
-      --photo-rotate-y: 0deg;
       position: relative;
       display: flex;
       flex-direction: column;
@@ -128,22 +114,8 @@
       overflow: hidden;
       padding: 42px 48px 36px;
       color: var(--cloud);
-      background: #142442;
-      perspective: 1300px;
-    }
-
-    .brand-panel::before {
-      position: absolute;
-      z-index: 0;
-      inset: -3%;
-      content: "";
-      pointer-events: none;
-      background: url("./login-villa-cover.jpg") center / cover no-repeat;
-      transform: translate3d(var(--photo-offset-x), var(--photo-offset-y), 0)
-        rotateX(var(--photo-rotate-x)) rotateY(var(--photo-rotate-y)) scale(1.08);
-      transform-style: preserve-3d;
-      transition: transform 260ms cubic-bezier(.2, .7, .2, 1);
-      will-change: transform;
+      background: var(--hero-gradient);
+      background-size: auto;
     }
 
     .brand-panel::after {
@@ -157,10 +129,8 @@
       right: 0;
       bottom: 0;
       left: 0;
-      height: 100%;
-      background:
-        linear-gradient(180deg, rgb(8 16 32 / 22%), transparent 34%, rgb(8 16 32 / 76%)),
-        linear-gradient(115deg, rgb(8 16 32 / 20%), transparent 74%);
+      height: 42%;
+      background: linear-gradient(transparent, rgb(var(--midnight-rgb) / 26%));
     }
 
     .brand-header,
@@ -268,33 +238,6 @@
 
     .form-content { width: min(100%, 370px); }
 
-    .form-content.mode-switching .form-heading {
-      animation: auth-heading-enter 300ms cubic-bezier(.2, .7, .25, 1) both;
-    }
-
-    .form-content.mode-switching #loginForm {
-      animation: auth-form-enter 340ms cubic-bezier(.2, .7, .25, 1) 45ms both;
-    }
-
-    .form-content.mode-switching[data-auth-mode="signup"] #nameField {
-      animation: signup-field-reveal 260ms cubic-bezier(.2, .7, .25, 1) 110ms both;
-    }
-
-    @keyframes auth-heading-enter {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes auth-form-enter {
-      from { opacity: 0; transform: translateY(10px) scale(.99); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    @keyframes signup-field-reveal {
-      from { opacity: 0; clip-path: inset(0 0 100%); }
-      to { opacity: 1; clip-path: inset(0); }
-    }
-
     .mobile-brand {
       display: none;
       align-items: center;
@@ -332,7 +275,6 @@
     }
 
     .auth-choice {
-      position: relative;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4px;
@@ -343,27 +285,7 @@
       border-radius: 10px;
     }
 
-    .auth-choice::before {
-      position: absolute;
-      top: 4px;
-      bottom: 4px;
-      left: 4px;
-      width: calc(50% - 4px);
-      content: "";
-      background: var(--electric-blue);
-      border-radius: 7px;
-      box-shadow: 0 1px 4px rgb(var(--midnight-rgb) / 12%);
-      pointer-events: none;
-      transition: transform 280ms cubic-bezier(.2, .75, .25, 1);
-    }
-
-    .auth-choice[data-auth-mode="signup"]::before {
-      transform: translateX(calc(100% + 4px));
-    }
-
     .auth-choice button {
-      position: relative;
-      z-index: 1;
       min-height: 40px;
       color: rgb(var(--body-text-rgb) / 70%);
       background: transparent;
@@ -377,11 +299,11 @@
 
     .auth-choice button[aria-selected="true"] {
       color: var(--white);
-      background: transparent;
-      box-shadow: none;
+      background: var(--electric-blue);
+      box-shadow: 0 1px 4px rgb(var(--midnight-rgb) / 12%);
     }
 
-    .auth-choice button[aria-selected="true"]:hover { background: rgb(var(--white-rgb) / 8%); }
+    .auth-choice button[aria-selected="true"]:hover { background: var(--blue-hover); }
 
     .auth-choice button:focus-visible {
       outline: 2px solid var(--sky-glow);
@@ -634,11 +556,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-      }
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
       body::before { transform: none; }
     }
   </style>
@@ -744,7 +662,7 @@
               <span class="switch-track" aria-hidden="true"></span>
               <span class="remember-label">Keep me signed in</span>
             </label>
-            <a class="text-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=s78941652%40gmail.com&amp;su=Password%20help" target="_blank" rel="noopener noreferrer">Forgot password?</a>
+            <a class="text-link" href="mailto:support@haven.example?subject=Password%20help">Forgot password?</a>
           </div>
 
           <button class="submit-button" id="submitButton" type="submit">
@@ -792,50 +710,20 @@
     const rememberOptions = document.querySelector(".form-options");
     const demoAuthStorageKey = "sierra-haven-demo-authenticated";
     const brandPanel = document.querySelector(".brand-panel");
-    const formContent = document.querySelector(".form-content");
-    let modeAnimationTimer;
     let isSignUp = false;
-
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      const moveOuterPhotoWithPointer = (event) => {
-        if (event.pointerType === "touch" && event.pressure === 0) return;
-        const pointerX = event.clientX / window.innerWidth - 0.5;
-        const pointerY = event.clientY / window.innerHeight - 0.5;
-        document.body.style.setProperty("--outer-photo-offset-x", `${pointerX * -12}px`);
-        document.body.style.setProperty("--outer-photo-offset-y", `${pointerY * -12}px`);
-        document.body.style.setProperty("--outer-photo-rotate-x", `${pointerY * -1.5}deg`);
-        document.body.style.setProperty("--outer-photo-rotate-y", `${pointerX * 1.5}deg`);
-      };
-      const resetOuterPhotoPosition = () => {
-        document.body.style.setProperty("--outer-photo-offset-x", "0px");
-        document.body.style.setProperty("--outer-photo-offset-y", "0px");
-        document.body.style.setProperty("--outer-photo-rotate-x", "0deg");
-        document.body.style.setProperty("--outer-photo-rotate-y", "0deg");
-      };
-
-      window.addEventListener("pointermove", moveOuterPhotoWithPointer);
-      document.documentElement.addEventListener("pointerleave", resetOuterPhotoPosition);
-      window.addEventListener("pointercancel", resetOuterPhotoPosition);
-    }
 
     if (brandPanel && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       const movePhotoWithPointer = (event) => {
         if (event.pointerType === "touch" && event.pressure === 0) return;
         const bounds = brandPanel.getBoundingClientRect();
-        const pointerX = (event.clientX - bounds.left) / bounds.width - 0.5;
-        const pointerY = (event.clientY - bounds.top) / bounds.height - 0.5;
-        const horizontalOffset = pointerX * -24;
-        const verticalOffset = pointerY * -24;
+        const horizontalOffset = ((event.clientX - bounds.left) / bounds.width - 0.5) * -24;
+        const verticalOffset = ((event.clientY - bounds.top) / bounds.height - 0.5) * -24;
         brandPanel.style.setProperty("--photo-offset-x", `${horizontalOffset}px`);
         brandPanel.style.setProperty("--photo-offset-y", `${verticalOffset}px`);
-        brandPanel.style.setProperty("--photo-rotate-x", `${pointerY * -5}deg`);
-        brandPanel.style.setProperty("--photo-rotate-y", `${pointerX * 5}deg`);
       };
       const resetPhotoPosition = () => {
         brandPanel.style.setProperty("--photo-offset-x", "0px");
         brandPanel.style.setProperty("--photo-offset-y", "0px");
-        brandPanel.style.setProperty("--photo-rotate-x", "0deg");
-        brandPanel.style.setProperty("--photo-rotate-y", "0deg");
       };
 
       brandPanel.addEventListener("pointermove", movePhotoWithPointer);
@@ -848,11 +736,8 @@
       if (window.sierraSupabase) window.sierraSupabase.auth.signOut();
     }
 
-    const setAuthMode = (signUp, animate = false) => {
-      const modeChanged = isSignUp !== signUp;
+    const setAuthMode = (signUp) => {
       isSignUp = signUp;
-      formContent.dataset.authMode = signUp ? "signup" : "login";
-      document.querySelector(".auth-choice").dataset.authMode = signUp ? "signup" : "login";
       loginTab.setAttribute("aria-selected", String(!signUp));
       loginTab.tabIndex = signUp ? -1 : 0;
       signupTab.setAttribute("aria-selected", String(signUp));
@@ -873,20 +758,10 @@
         : 'Sign in <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
       statusMessage.textContent = "";
       statusMessage.removeAttribute("data-state");
-
-      if (animate && modeChanged) {
-        window.clearTimeout(modeAnimationTimer);
-        formContent.classList.remove("mode-switching");
-        void formContent.offsetWidth;
-        formContent.classList.add("mode-switching");
-        modeAnimationTimer = window.setTimeout(() => {
-          formContent.classList.remove("mode-switching");
-        }, 450);
-      }
     };
 
-    loginTab.addEventListener("click", () => setAuthMode(false, true));
-    signupTab.addEventListener("click", () => setAuthMode(true, true));
+    loginTab.addEventListener("click", () => setAuthMode(false));
+    signupTab.addEventListener("click", () => setAuthMode(true));
     [loginTab, signupTab].forEach((tab) => {
       tab.addEventListener("keydown", (event) => {
         if (event.key === "ArrowLeft" || event.key === "ArrowRight") {

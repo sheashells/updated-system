@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#26385F">
+  <meta name="description" content="Find help with SIERRA HAVEN property listings, tenant accounts, leases, payments, and maintenance requests.">
+  <title>Help Center | SIERRA HAVEN</title>
+  <link rel="stylesheet" href="landing.css">
+  <link rel="stylesheet" href="design-system.css">
+  <link rel="stylesheet" href="button-interactions.css">
+  <style>
+    :root {
+      color-scheme: light;
+      --navy: #1d3155;
+      --blue: #3569c8;
+      --ink: #20304a;
+      --muted: #627087;
+      --line: #dce4ef;
+      --surface: #fff;
+      --page: #f4f7fb;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--ink);
+      font: 16px/1.6 "Segoe UI", Tahoma, sans-serif;
+    }
+    a { color: var(--blue); }
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px max(24px, calc((100% - 1120px) / 2));
+      background: var(--navy);
+      color: white;
+    }
+    .brand { color: white; font-size: 17px; font-weight: 750; letter-spacing: .04em; text-decoration: none; }
+    .header-links { display: flex; flex-wrap: wrap; gap: 18px; }
+    .header-links a { color: #e6edfa; font-size: 14px; text-decoration: none; }
+    .header-links a:hover, .header-links a:focus-visible { text-decoration: underline; }
+    main { width: min(100% - 40px, 920px); margin: 0 auto; padding: 54px 0 72px; }
+    .hero { margin-bottom: 30px; text-align: center; }
+    .eyebrow { margin: 0 0 8px; color: var(--blue); font-size: 12px; font-weight: 750; letter-spacing: .13em; text-transform: uppercase; }
+    h1 { margin: 0; color: var(--navy); font-size: clamp(30px, 5vw, 44px); letter-spacing: -.035em; line-height: 1.15; }
+    .hero p:last-child { margin: 14px auto 0; max-width: 590px; color: var(--muted); }
+    .search-wrap { position: relative; max-width: 650px; margin: 26px auto 0; }
+    .search-wrap label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+    .search-wrap input {
+      width: 100%;
+      min-height: 54px;
+      padding: 13px 18px 13px 48px;
+      border: 1px solid #cbd6e5;
+      border-radius: 12px;
+      background: white;
+      color: var(--ink);
+      font: inherit;
+      box-shadow: 0 8px 26px rgb(29 49 85 / 7%);
+    }
+    .search-wrap input:focus { border-color: var(--blue); outline: 3px solid rgb(53 105 200 / 17%); }
+    .search-icon { position: absolute; top: 12px; left: 17px; color: #73819a; font-size: 20px; pointer-events: none; }
+    .topic-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; margin: 20px 0 34px; }
+    .topic-button {
+      padding: 8px 14px;
+      border: 1px solid #d5deeb;
+      border-radius: 999px;
+      background: white;
+      color: #3e4c63;
+      cursor: pointer;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 650;
+    }
+    .topic-button[aria-pressed="true"] { border-color: var(--blue); background: #eaf1ff; color: #214f9e; }
+    .section-heading { margin: 0 0 14px; color: var(--navy); font-size: 20px; }
+    .faq-list { display: grid; gap: 10px; }
+    .faq-item {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      box-shadow: 0 4px 16px rgb(29 49 85 / 4%);
+    }
+    .faq-item[hidden] { display: none; }
+    .faq-item summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 17px 19px;
+      color: var(--navy);
+      cursor: pointer;
+      font-weight: 700;
+      list-style: none;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: "+"; color: var(--blue); font-size: 22px; font-weight: 400; }
+    .faq-item[open] summary::after { content: "−"; }
+    .faq-answer { padding: 0 19px 18px; color: #526179; font-size: 14px; }
+    .faq-answer p { margin: 0; }
+    .no-results { padding: 20px; border: 1px dashed #cbd6e5; border-radius: 12px; color: var(--muted); text-align: center; }
+    .no-results[hidden] { display: none; }
+    .contact-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 30px;
+      padding: 24px;
+      border-radius: 14px;
+      background: var(--navy);
+      color: white;
+    }
+    .contact-card h2 { margin: 0; font-size: 19px; }
+    .contact-card p { margin: 5px 0 0; color: #d2dced; font-size: 14px; }
+    .contact-link {
+      flex: 0 0 auto;
+      padding: 10px 15px;
+      border-radius: 8px;
+      background: #28c895;
+      color: #102b3c;
+      font-size: 14px;
+      font-weight: 750;
+      text-decoration: none;
+    }
+    .contact-link:hover, .contact-link:focus-visible { background: #50dfae; }
+    footer { padding: 20px; color: #68758a; font-size: 13px; text-align: center; }
+    @media (max-width: 560px) {
+      .site-header { align-items: flex-start; flex-direction: column; padding: 16px 20px; }
+      .header-links { gap: 14px; }
+      main { width: min(100% - 28px, 920px); padding-top: 38px; }
+      .contact-card { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+  <link rel="stylesheet" href="help-center.css">
+</head>
+<body class="help-center-page">
+<div class="lp-wrapper">
+  <header class="lp-header lp-scrolled" id="help-header">
+    <div class="lp-container lp-nav-container">
+      <a class="lp-logo navbar-logo" href="index.html">
+        <img class="lp-logo-icon" src="assets/sierra-haven-mark.png" alt="" aria-hidden="true">
+        <span>SIERRA HAVEN</span>
+      </a>
+      <nav class="lp-nav-menu" id="help-nav-menu" aria-label="Help center navigation">
+        <ul class="lp-nav-list">
+          <li><a class="lp-nav-link" href="index.html">Home</a></li>
+          <li><a class="lp-nav-link" href="tenant-dashboard.html#overview">Tenant portal</a></li>
+        </ul>
+      </nav>
+      <button class="lp-mobile-toggle" id="help-mobile-toggle" type="button" aria-label="Toggle menu" aria-controls="help-nav-menu" aria-expanded="false">
+        <span class="lp-hamburger"></span>
+      </button>
+    </div>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="pageTitle">
+      <p class="eyebrow">SIERRA HAVEN support</p>
+      <h1 id="pageTitle">How can we help?</h1>
+      <p>Search answers about your account, property listings, lease, payments, or maintenance requests.</p>
+      <div class="search-wrap">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <label for="helpSearch">Search help topics</label>
+        <input id="helpSearch" type="search" placeholder="Search for a topic or question…" autocomplete="off">
+      </div>
+    </section>
+
+    <nav class="topic-list" aria-label="Filter help topics">
+      <button class="topic-button" type="button" data-topic="all" aria-pressed="true">All topics</button>
+      <button class="topic-button" type="button" data-topic="account" aria-pressed="false">Account</button>
+      <button class="topic-button" type="button" data-topic="properties" aria-pressed="false">Properties</button>
+      <button class="topic-button" type="button" data-topic="lease" aria-pressed="false">Lease</button>
+      <button class="topic-button" type="button" data-topic="payments" aria-pressed="false">Payments</button>
+      <button class="topic-button" type="button" data-topic="maintenance" aria-pressed="false">Maintenance</button>
+      <button class="topic-button" type="button" data-topic="valuation" aria-pressed="false">AI valuation</button>
+    </nav>
+
+    <section aria-labelledby="faqHeading">
+      <h2 class="section-heading" id="faqHeading">Frequently asked questions</h2>
+      <div class="faq-list" id="faqList">
+        <details class="faq-item" data-category="account">
+          <summary>How do I sign in or create an account?</summary>
+          <div class="faq-answer"><p>Choose Sign Up on the portal sign-in page to create an account, or use Log In if you already registered. If sign-in continues to fail, contact support and include the email address on your account. Never send your password.</p></div>
+        </details>
+        <details class="faq-item" data-category="properties">
+          <summary>Are the properties shown on the site live listings?</summary>
+          <div class="faq-answer"><p>Some portal listings may be demonstration content. Confirm availability, pricing, and property details with the property team before making a decision.</p></div>
+        </details>
+        <details class="faq-item" data-category="lease">
+          <summary>Where can I review my lease?</summary>
+          <div class="faq-answer"><p>Sign in to the tenant portal and open My lease. The portal may show sample information when a live lease record has not been connected. Contact the property team for an official copy or clarification.</p></div>
+        </details>
+        <details class="faq-item" data-category="payments">
+          <summary>Can I pay rent through the portal?</summary>
+          <div class="faq-answer"><p>Payment features shown in the demo are not connected to a live payment processor. Confirm payment instructions directly with the property team, and do not email card or bank account numbers.</p></div>
+        </details>
+        <details class="faq-item" data-category="maintenance">
+          <summary>How do I report a maintenance concern?</summary>
+          <div class="faq-answer"><p>Open Maintenance in the tenant portal, enter the property and unit/area, choose a concern, and add notes that explain the problem. When the live Supabase setup is enabled, your request is sent to the property team and appears in the Admin Dashboard. If you see a submission error or have an urgent repair, contact the property team directly.</p></div>
+        </details>
+        <details class="faq-item" data-category="maintenance">
+          <summary>How can I check a maintenance request?</summary>
+          <div class="faq-answer"><p>Open Maintenance in your tenant portal to review your request and its latest status. Requests are tied to your signed-in account; the property team can also provide an update using your request number.</p></div>
+        </details>
+        <details class="faq-item" data-category="valuation">
+          <summary>How should I interpret an AI property valuation?</summary>
+          <div class="faq-answer"><p>The valuation is an estimate based on available comparable sales and market information, not an appraisal or guaranteed sale price. Estimates may be unavailable when there are not enough verified matching sales.</p></div>
+        </details>
+        <details class="faq-item" data-category="valuation">
+          <summary>Why might a valuation not be available?</summary>
+          <div class="faq-answer"><p>The service needs sufficient verified comparable sales and a deployed valuation service. If no estimate appears, try again later or contact support. Do not treat a sample screen or example figure as a live estimate.</p></div>
+        </details>
+      </div>
+      <p class="no-results" id="noResults" role="status" hidden>No matching help topics. Try another search or contact support.</p>
+    </section>
+
+    <section class="contact-card" aria-labelledby="contactHeading">
+      <div>
+        <h2 id="contactHeading">Still need help?</h2>
+        <p>Send the property team a message and include the details they need to assist you.</p>
+      </div>
+      <a class="contact-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=s78941652%40gmail.com&amp;su=SIERRA%20HAVEN%20support%20request" target="_blank" rel="noopener noreferrer">Contact support</a>
+    </section>
+  </main>
+  <footer class="lp-footer">
+    <div class="lp-container lp-footer-grid">
+      <div class="lp-footer-brand">
+        <h3>SIERRA HAVEN</h3>
+        <p>Clear answers and helpful support for your property journey.</p>
+      </div>
+      <div class="lp-footer-links">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="valuation.html">AI Property Valuation</a></li>
+          <li><a href="tenant-dashboard.html#overview">Tenant Portal</a></li>
+        </ul>
+      </div>
+      <div class="lp-footer-links">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#pageTitle">Help Center</a></li>
+          <li><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=s78941652%40gmail.com&amp;su=SIERRA%20HAVEN%20support%20request" target="_blank" rel="noopener noreferrer">Contact Support</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="lp-container lp-footer-bottom">
+      <p>&copy; 2026 SIERRA HAVEN. All rights reserved.</p>
+    </div>
+  </footer>
+</div>
+  <script>
+    const mobileMenuButton = document.getElementById('help-mobile-toggle');
+    const mobileMenu = document.getElementById('help-nav-menu');
+    mobileMenuButton.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('is-open');
+      mobileMenuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    const searchInput = document.getElementById('helpSearch');
+    const faqItems = [...document.querySelectorAll('.faq-item')];
+    const topicButtons = [...document.querySelectorAll('.topic-button')];
+    const noResults = document.getElementById('noResults');
+    let activeTopic = 'all';
+
+    function normalizeSearchText(text) {
+      return text.toLowerCase().replace(/\b([a-z]+?)ies\b/g, '$1y').replace(/\b([a-z]+?)s\b/g, '$1');
+    }
+
+    function filterHelpTopics() {
+      const queryTerms = normalizeSearchText(searchInput.value.trim()).split(/\s+/).filter(Boolean);
+      let visibleCount = 0;
+      faqItems.forEach((item) => {
+        const topicMatches = activeTopic === 'all' || item.dataset.category === activeTopic;
+        const searchableText = normalizeSearchText(item.textContent);
+        const searchMatches = queryTerms.every((term) => searchableText.includes(term));
+        item.hidden = !(topicMatches && searchMatches);
+        if (!item.hidden) visibleCount += 1;
+      });
+      noResults.hidden = visibleCount > 0;
+    }
+
+    searchInput.addEventListener('input', filterHelpTopics);
+    topicButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        activeTopic = button.dataset.topic;
+        topicButtons.forEach((topicButton) => topicButton.setAttribute('aria-pressed', String(topicButton === button)));
+        filterHelpTopics();
+      });
+    });
+  </script>
+</body>
+</html>

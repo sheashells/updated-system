@@ -157,27 +157,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 88px; }
   filter: drop-shadow(0 2px 8px rgb(var(--electric-blue-rgb) / 35%));
 }
 .lp-auth-group { display: flex; align-items: center; gap: var(--lp-spacing-xs); }
-.lp-theme-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.45rem;
-  min-height: 2.75rem;
-  padding: 0.55rem 0.8rem;
-  border: 1px solid rgb(var(--cloud-rgb) / 45%);
-  border-radius: var(--lp-radius-sm);
-  color: var(--lp-color-white);
-  background: transparent;
-  font: inherit;
-  font-size: 0.85rem;
-  font-weight: 650;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: background-color var(--lp-transition), color var(--lp-transition), border-color var(--lp-transition);
-}
-.lp-theme-toggle:hover { background: rgb(var(--cloud-rgb) / 12%); }
-.lp-theme-toggle:focus-visible { outline: 3px solid var(--sky-glow); outline-offset: 3px; }
-.lp-theme-icon { font-size: 1rem; line-height: 1; }
 .lp-mobile-toggle { display: none; background: none; border: 1px solid currentColor; border-radius: 4px; cursor: pointer; padding: 0.6rem; color: var(--lp-color-white); }
 .lp-hamburger, .lp-hamburger::before, .lp-hamburger::after {
   display: block;
@@ -231,22 +210,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 88px; }
 .lp-search-form { display: flex; gap: var(--lp-spacing-sm); }
 .lp-search-status { margin: 1rem 0 0; color: var(--lp-color-navy-light); font-weight: 600; }
 .lp-search-status[hidden] { display: none; }
-.lp-search-empty {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1rem;
-  padding: 1.25rem;
-  color: var(--lp-color-text);
-  background: var(--surface-card);
-  border: 1px solid rgb(var(--sky-glow-rgb) / 25%);
-  border-radius: var(--lp-radius-md);
-}
-.lp-search-empty[hidden] { display: none; }
-.lp-search-empty p { margin: 0; }
-.lp-search-empty .lp-btn { flex: 0 0 auto; }
 .lp-input-group { flex: 1; display: flex; flex-direction: column; }
 .lp-input-group label { font-size: 0.875rem; color: var(--lp-color-text-muted); margin-bottom: 0.25rem; }
 .lp-input-group input, .lp-input-group select {

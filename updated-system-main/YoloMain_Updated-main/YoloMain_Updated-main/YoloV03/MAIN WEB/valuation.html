@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="landing.css" />
   <link rel="stylesheet" href="design-system.css" />
   <link rel="stylesheet" href="button-interactions.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     :root {
       --midnight: #26385F;
@@ -572,15 +573,6 @@
     input:focus,
     select:focus,
     textarea:focus { border-color: var(--electric-blue); box-shadow: var(--blue-glow); }
-    #valuationForm input:focus,
-    #valuationForm select:focus {
-      color: var(--text-dark);
-      background-color: #fff;
-    }
-    select option {
-      color: var(--text-dark);
-      background-color: #fff;
-    }
     .submit-btn,
     .nav-signup {
       color: var(--pure-white);
@@ -632,8 +624,8 @@
       <div class="hero-inner">
         <div class="hero-copy">
           <span class="eyebrow">AI-powered valuation</span>
-          <h2>Value your property with better evidence.</h2>
-          <p>Get a comparable-sales valuation for houses, condos, apartments, townhouses, and commercial properties when verified local sales are available.</p>
+          <h2>Value your property with confidence.</h2>
+          <p>Estimate the market value of homes, condos, and lots using local pricing trends, comparable sales, and property-level data.</p>
           <a class="nav-signup" href="../LOGIN%20PANEL/Index.html?mode=signup" id="valuationPortalLink">Open the Property Portal</a>
           <a class="nav-signup" href="tenant-dashboard.html#overview" id="valuationAccountPortalLink" hidden>Open My Dashboard</a>
         </div>
@@ -641,24 +633,24 @@
         <div class="hero-panel">
           <div class="mini-stat">
             <div>
-              <small>Evidence source</small>
-              <strong>Verified sales</strong>
+              <small>Average price</small>
+              <strong>₱8.4M</strong>
             </div>
-            <div>Supabase</div>
+            <div>+8.2%</div>
           </div>
           <div class="mini-stat">
             <div>
-              <small>AI analysis</small>
-              <strong>OpenAI</strong>
+              <small>Median days</small>
+              <strong>17 days</strong>
             </div>
-            <div>Server-side</div>
+            <div>Fast</div>
           </div>
           <div class="mini-stat">
             <div>
-              <small>Value range</small>
-              <strong>Sales data</strong>
+              <small>Buyer demand</small>
+              <strong>High</strong>
             </div>
-            <div>Indicative</div>
+            <div>Strong</div>
           </div>
         </div>
       </div>
@@ -671,7 +663,7 @@
             <span class="section-kicker">Property valuation</span>
             <h2>Estimate your value</h2>
           </div>
-          <div class="tag"><span class="tag-dot"></span> Verified-sales AI valuation</div>
+          <div class="tag"><span class="tag-dot"></span> Location-adjusted estimate</div>
         </div>
 
         <form id="valuationForm" novalidate>
@@ -691,40 +683,33 @@
               <label for="barangay">Barangay <span>(optional)</span></label>
               <input id="barangay" name="barangay" type="text" placeholder="Enter barangay, if known" autocomplete="address-level3" disabled>
             </div>
-            <p class="location-hint">Choose a province and city. Live estimates require sign-in, a deployed valuation service, and at least three verified comparable sales in Supabase. <a href="../LOGIN%20PANEL/Index.html?mode=login">Sign in</a>.</p>
-            <p class="location-error" id="locationError" role="status" aria-live="polite" hidden></p>
+            <p class="location-hint">Choose a province, then type or select a city or municipality from its suggestions. Price, access and trend adjustments are indicative demo factors, not live comparable-sale data.</p>
+            <p class="location-error" id="locationError" role="alert" hidden>Please select a valid location before generating an AI valuation.</p>
           </div>
 
           <div class="field">
             <label for="propertyType">Property Type</label>
             <select id="propertyType">
-              <option value="house">Residential</option>
-              <option value="condominium">Condominium</option>
-              <option value="apartment">Apartment</option>
-              <option value="townhouse">Townhouse</option>
-              <option value="commercial">Commercial</option>
-              <option value="industrial">Industrial</option>
+              <option>House</option>
+              <option>Condo</option>
+              <option>Apartment</option>
+              <option>Lot</option>
             </select>
           </div>
 
           <div class="field">
             <label for="bedrooms">Bedrooms</label>
-            <input id="bedrooms" type="number" min="0" max="30" value="3" required />
-          </div>
-
-          <div class="field">
-            <label for="ageYears">Property Age (years)</label>
-            <input id="ageYears" type="number" min="0" max="150" value="5" required />
+            <input id="bedrooms" type="number" min="1" max="10" value="3" />
           </div>
 
           <div class="field">
             <label for="floorArea">Floor Area (sqm)</label>
-            <input id="floorArea" type="number" min="1" max="100000" placeholder="e.g., 120" value="120" required />
+            <input id="floorArea" type="number" placeholder="e.g., 120" value="120" />
           </div>
 
           <div class="field">
             <label for="lotArea">Lot Area (sqm)</label>
-            <input id="lotArea" type="number" min="0" max="1000000" placeholder="e.g., 200" value="200" required />
+            <input id="lotArea" type="number" placeholder="e.g., 200" value="200" />
           </div>
 
           <div class="field">
@@ -737,33 +722,36 @@
             </select>
           </div>
 
-          <button type="submit" class="submit-btn">Get live AI valuation</button>
+          <button type="submit" class="submit-btn">Calculate Value</button>
         </form>
       </section>
 
       <section class="card result-card">
         <div class="result-header">
           <h3>Valuation Results</h3>
-          <div class="tag"><span class="tag-dot"></span> <span id="confidenceLabel">Awaiting evidence</span></div>
+          <div class="tag"><span class="tag-dot"></span> <span id="confidenceLabel">High confidence</span></div>
         </div>
 
-        <div class="result-price" id="estimatedValue">Submit property details to request a live estimate</div>
-        <p id="estimateRange" style="margin:-8px 0 16px;color:var(--muted);font-size:12px;">Comparable sales range: awaiting evidence</p>
+        <div class="result-price">Select a location to view your estimate</div>
 
         <div class="meta-row">
           <div class="metric-box">
-            <span>Evidence confidence</span>
-            <strong id="confidenceValue">—</strong>
+            <span>Confidence Level</span>
+            <strong id="confidenceValue">High</strong>
           </div>
           <div class="metric-box">
-            <span>Market trend</span>
+            <span>Market Growth</span>
             <strong id="marketTrend">—</strong>
           </div>
         </div>
 
+        <div class="chart-wrap">
+          <canvas id="valuationChart"></canvas>
+        </div>
+
         <div class="insight-box">
           <div class="insight-icon">🏠</div>
-          <p id="valuationInsight">No estimate yet. The system will not generate a price without verified local sale evidence.</p>
+          <p>Select a province and city to see a location-adjusted estimate.</p>
         </div>
       </section>
     </main>
@@ -773,8 +761,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-client.js"></script>
-  <script src="philippine-locations.js"></script>
-  <script src="live-valuation.js"></script>
+  <script src="valuation.js"></script>
   <script>
     (() => {
       const menuToggle = document.getElementById('lp-mobile-toggle');
